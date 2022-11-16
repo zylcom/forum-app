@@ -17,7 +17,6 @@
     "quote-props": ["error", "as-needed"],
     "object-curly-spacing": ["error", "always"],
     "require-jsdoc": "off",
-    "max-len": ["error", 100],
     "indent": ["error", 2]
   },
   "settings": {
