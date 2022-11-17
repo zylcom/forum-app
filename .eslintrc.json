@@ -17,7 +17,8 @@
     "quote-props": ["error", "as-needed"],
     "object-curly-spacing": ["error", "always"],
     "require-jsdoc": "off",
-    "indent": ["error", 2, { "SwitchCase": 1 }]
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "operator-linebreak": ["error", "before"]
   },
   "settings": {
     "react": {
