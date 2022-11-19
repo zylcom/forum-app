@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         biltong: "#3d0000",
+        "black-wash": "#0b0c11",
         "captain-blue": "#03506f",
         "deepest-water": "#476072",
         "fog-of-war": "#0c2233",
