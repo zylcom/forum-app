@@ -3,6 +3,7 @@ import EnvelopeIcon from "../components/EnvelopeIcon";
 import KeyIcon from "../components/KeyIcon";
 import UserIcon from "../components/UserIcon";
 import HeroImage from "../assets/undraw_authentication.svg";
+import { Link } from "react-router-dom";
 
 function RegisterPage() {
   return (
@@ -16,7 +17,10 @@ function RegisterPage() {
         </h1>
 
         <p className="text-sm mb-8 text-downpour">
-          Already A Member? <span className="text-olympic-blue">Sign In</span>
+          Already A Member?{" "}
+          <Link to="/login" className="text-olympic-blue">
+            Sign In
+          </Link>
         </p>
 
         <form>

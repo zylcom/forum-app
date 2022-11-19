@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Avatar from "./Avatar";
 import ThreadCardFooter from "./ThreadCardFooter";
-import UserAvatar from "./UserAvatar";
 
 function ThreadCard() {
   return (
@@ -13,7 +13,11 @@ function ThreadCard() {
         before:content[''] before:absolute before:w-[5px] before:h-[5px] before:-top-[1px]
         before:-left-[1px] before:border-biltong before:border-l-2 before:border-t-2"
       >
-        <UserAvatar />
+        <div>
+          <Avatar />
+
+          <p className="text-xs text-center break-all mt-1">Zylcom</p>
+        </div>
 
         <p className="text-[length:10px]">1 hours ago</p>
       </div>

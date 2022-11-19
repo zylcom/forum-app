@@ -5,7 +5,7 @@ import ThreadList from "../components/ThreadList";
 function HomePage() {
   return (
     <>
-      <main className="pb-20">
+      <main className="pt-16 pb-20">
         <CategoryList />
 
         <ThreadList />
