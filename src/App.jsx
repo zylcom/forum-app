@@ -1,7 +1,8 @@
 import React from "react";
 import NavBar from "./components/NavBar";
 import NavigationTab from "./components/NavigationTab";
-import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+// import LoginPage from "./pages/LoginPage";
 // import HomePage from "./pages/HomePage";
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
       </header>
 
       {/* <HomePage /> */}
-      <LoginPage />
+      {/* <LoginPage /> */}
+      <RegisterPage />
 
       <footer className="fixed left-0 bottom-0 w-full bg-fog-of-war">
         <NavigationTab />
