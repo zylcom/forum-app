@@ -3,7 +3,7 @@ import ThreadCard from "./ThreadCard";
 
 function ThreadList() {
   return (
-    <div className="mt-10 [&>div:first-child]:border-t [&>div:first-child]:border-t-vampire-bite">
+    <div className="mt-10 md:w-3/5 max-w-[1000px] mx-auto bg-navy-blazer">
       <ThreadCard />
       <ThreadCard />
       <ThreadCard />
