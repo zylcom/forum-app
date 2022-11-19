@@ -1,9 +1,10 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import NavigationTab from "./components/NavigationTab";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-// import LoginPage from "./pages/LoginPage";
-// import HomePage from "./pages/HomePage";
 
 function App() {
   return (
@@ -12,9 +13,11 @@ function App() {
         <NavBar />
       </header>
 
-      {/* <HomePage /> */}
-      {/* <LoginPage /> */}
-      <RegisterPage />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+      </Routes>
 
       <footer className="fixed left-0 bottom-0 w-full bg-fog-of-war">
         <NavigationTab />

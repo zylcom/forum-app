@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import ThreadCardFooter from "./ThreadCardFooter";
 import UserAvatar from "./UserAvatar";
 
@@ -18,9 +19,11 @@ function ThreadCard() {
       </div>
 
       <div className="col-span-2 bg-biltong/80 p-2 rounded-b-md rounded-tl-md border-r order-1">
-        <h3 className="font-bold text-lg truncate">
-          Title asdhgasdasdasdasdajsdha asjdhgasdjh ajshdgajshg
-        </h3>
+        <Link to={`/threads/detail/`}>
+          <h3 className="font-bold text-lg truncate hover:text-clear-chill">
+            Title asdhgasdasdasdasdajsdha asjdhgasdjh ajshdgajshg
+          </h3>
+        </Link>
 
         <p className="text-sm mt-3">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error

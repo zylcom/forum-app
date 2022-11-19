@@ -6,7 +6,7 @@ import HeroImage from "../assets/undraw_authentication.svg";
 function LoginPage() {
   return (
     <div
-      className="w-full text-[color:#ededee] grid sm:grid-cols-2 place-content-center
+      className="w-full text-white-edgar grid sm:grid-cols-2 place-content-center
       place-items-center gap-x-3 mb-10 p-5"
     >
       <div className="flex flex-col justify-center">
@@ -14,8 +14,8 @@ function LoginPage() {
           Hello, welcome back.
         </h1>
 
-        <p className="text-sm mb-8 text-[color:#9c9da2]">
-          Not A Member? <span className="text-[color:#5195ea]">Sign Up</span>
+        <p className="text-sm mb-8 text-downpour">
+          Not A Member? <span className="text-olympic-blue">Sign Up</span>
         </p>
 
         <form>
@@ -24,8 +24,8 @@ function LoginPage() {
               type="email"
               name="email"
               id="email"
-              className="rounded-lg h-12 w-full p-4 pt-6 pr-10 focus:ring-0 focus:border focus:border-[color:#0449e9]
-              focus:outline-none font-medium bg-[#1b2a4a] text-[color:#ededee] peer placeholder-transparent"
+              className="rounded-lg h-12 w-full p-4 pt-6 pr-10 focus:ring-0 focus:border focus:border-scuff-blue
+              focus:outline-none font-medium bg-rurikon-blue text-white-edgar peer placeholder-transparent"
               placeholder="Email"
               autoComplete="off"
               required
@@ -33,7 +33,7 @@ function LoginPage() {
 
             <span
               className="absolute left-4 top-1 text-[length:10px] peer-placeholder-shown:top-4
-              peer-placeholder-shown:text-base text-[color:#9c9da2] transition-all duration-300"
+              peer-placeholder-shown:text-base text-downpour transition-all duration-300"
             >
               Email
             </span>
@@ -48,8 +48,8 @@ function LoginPage() {
               type="password"
               name="password"
               id="password"
-              className="rounded-lg h-12 p-4 w-full pt-6 pr-10 focus:ring-0 focus:border focus:border-[color:#0449e9]
-              focus:outline-none font-medium bg-[#1a429c] text-[color:#ededee] peer placeholder-transparent"
+              className="rounded-lg h-12 p-4 w-full pt-6 pr-10 focus:ring-0 focus:border focus:border-scuff-blue
+              focus:outline-none font-medium bg-space-explorer text-white-edgar peer placeholder-transparent"
               placeholder="Password"
               autoComplete="off"
               required
@@ -57,7 +57,7 @@ function LoginPage() {
 
             <span
               className="absolute left-4 top-1 text-[length:10px] peer-placeholder-shown:top-4
-              peer-placeholder-shown:text-base text-[color:#ededee] transition-all duration-300"
+              peer-placeholder-shown:text-base text-white-edgar transition-all duration-300"
             >
               Password
             </span>
@@ -69,7 +69,7 @@ function LoginPage() {
 
           <button
             type="submit"
-            className="bg-[#1D90F4] w-full rounded h-12 text-[color:#ededee]"
+            className="bg-clear-chill w-full rounded h-12 text-white-edgar"
           >
             Sign In
           </button>
