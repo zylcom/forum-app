@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CommentIcon from "./CommentIcon";
+import CommentIcon from "./icons/CommentIcon";
 
 function CommentButton() {
   return (

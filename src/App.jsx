@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import NavigationTab from "./components/NavigationTab";
+import CreateThreadPage from "./pages/CreateThreadPage";
 import DetailPage from "./pages/DetailPage";
 import HomePage from "./pages/HomePage";
 import LeaderboardsPage from "./pages/LeaderboardsPage";
@@ -22,6 +23,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/leaderboards" element={<LeaderboardsPage />} />
           <Route path="/threads/:id" element={<DetailPage />} />
+          <Route path="/create" element={<CreateThreadPage />} />
         </Routes>
       </main>
 

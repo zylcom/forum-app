@@ -1,5 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import Avatar from "./Avatar";
+import NavBarMenu from "./NavBarMenu";
 import SigninButton from "./SigninButton";
 import SignupButton from "./SignupButton";
 
@@ -34,9 +37,9 @@ function NavBar() {
       flex items-center px-3 justify-between text-white"
       ref={navWrapper}
     >
-      <a href="/" className="text-3xl font-berkshire-wash">
+      <Link to="/" className="text-3xl font-berkshire-wash">
         Forum
-      </a>
+      </Link>
 
       {authUser === null ? (
         <div>
@@ -44,7 +47,17 @@ function NavBar() {
 
           <SignupButton />
         </div>
-      ) : null}
+      ) : (
+        <div className="flex items-center gap-x-2 max-w-[200px]">
+          <Avatar />
+
+          <p className="text-center font-light truncate hidden sm:block">
+            Zylcom asdasdasdasd
+          </p>
+
+          <NavBarMenu />
+        </div>
+      )}
     </nav>
   );
 }

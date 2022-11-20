@@ -1,7 +1,7 @@
 import React from "react";
-import EnvelopeIcon from "../components/EnvelopeIcon";
-import KeyIcon from "../components/KeyIcon";
-import UserIcon from "../components/UserIcon";
+import EnvelopeIcon from "../components/icons/EnvelopeIcon";
+import KeyIcon from "../components/icons/KeyIcon";
+import UserIcon from "../components/icons/UserIcon";
 import HeroImage from "../assets/undraw_authentication.svg";
 import { Link } from "react-router-dom";
 

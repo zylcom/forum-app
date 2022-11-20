@@ -1,7 +1,7 @@
 import React from "react";
-import LeaderboardsIcon from "./LeaderboardsIcon";
+import LeaderboardsIcon from "./icons/LeaderboardsIcon";
 import NavigationTabLink from "./NavigationTabLink";
-import ThreadIcon from "./ThreadIcon";
+import ThreadIcon from "./icons/ThreadIcon";
 
 function NavigationTab() {
   return (

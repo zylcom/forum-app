@@ -4,7 +4,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        biltong: "#3d0000",
         "black-wash": "#0b0c11",
         "blue-genie": "#6763fd",
         "captain-blue": "#03506f",

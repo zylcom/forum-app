@@ -1,5 +1,5 @@
 import React from "react";
-import VoteDownIcon from "./VoteDownIcon";
+import VoteDownIcon from "./icons/VoteDownIcon";
 
 function VoteDownButton() {
   return (

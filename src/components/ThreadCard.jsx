@@ -11,7 +11,7 @@ function ThreadCard() {
         border-t pt-1 after:content[''] after:w-2 after:h-2 after:absolute after:bg-navy-blazer
         after:-top-[1px] after:-left-[1px] after:rounded-tl-md after:border-l after:border-t
         before:content[''] before:absolute before:w-[5px] before:h-[5px] before:-top-[1px]
-        before:-left-[1px] before:border-biltong before:border-l-2 before:border-t-2"
+        before:-left-[1px] before:border-space-explorer before:border-l-2 before:border-t-2"
       >
         <div>
           <Avatar />
@@ -24,7 +24,7 @@ function ThreadCard() {
         <p className="text-[length:10px] font-light">1 hours ago</p>
       </div>
 
-      <div className="col-span-2 bg-biltong/80 p-2 rounded-b-md rounded-tl-md border-r order-1">
+      <div className="col-span-2 bg-space-explorer/80 p-2 rounded-b-md rounded-tl-md border-r order-1">
         <Link to={`/threads/${"12"}`}>
           <h3 className="font-bold text-lg truncate hover:text-clear-chill">
             Title asdhgasdasdasdasdajsdha asjdhgasdjh ajshdgajshg

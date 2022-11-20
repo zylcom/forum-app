@@ -1,5 +1,5 @@
 import React from "react";
-import VoteUpIcon from "./VoteUpIcon";
+import VoteUpIcon from "./icons/VoteUpIcon";
 
 function VoteUpButton() {
   return (
