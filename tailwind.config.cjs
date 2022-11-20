@@ -26,6 +26,7 @@ module.exports = {
       fontFamily: {
         "berkshire-wash": ["Berkshire Swash", "cursive"],
         inter: ["Inter", "sans-serif"],
+        montserrat: ["Montserrat", "sans-serif"],
       },
     },
   },

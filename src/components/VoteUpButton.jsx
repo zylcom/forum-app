@@ -3,7 +3,7 @@ import VoteUpIcon from "./VoteUpIcon";
 
 function VoteUpButton() {
   return (
-    <button className="grow flex justify-center gap-x-2 items-center border p-1 rounded-l">
+    <button className="grow flex justify-center gap-x-2 items-center p-1">
       <VoteUpIcon />
 
       <span className="text-sm">11231</span>

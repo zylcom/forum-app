@@ -3,7 +3,7 @@ import VoteDownIcon from "./VoteDownIcon";
 
 function VoteDownButton() {
   return (
-    <button className="grow border-y flex justify-center gap-x-2 items-center">
+    <button className="grow flex justify-center gap-x-2 items-center">
       <VoteDownIcon />
 
       <span className="text-sm">341231</span>

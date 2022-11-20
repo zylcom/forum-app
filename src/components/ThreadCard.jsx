@@ -16,14 +16,16 @@ function ThreadCard() {
         <div>
           <Avatar />
 
-          <p className="text-xs text-center break-all mt-1">Zylcom</p>
+          <p className="text-xs text-center font-light break-all mt-1">
+            Zylcom
+          </p>
         </div>
 
-        <p className="text-[length:10px]">1 hours ago</p>
+        <p className="text-[length:10px] font-light">1 hours ago</p>
       </div>
 
       <div className="col-span-2 bg-biltong/80 p-2 rounded-b-md rounded-tl-md border-r order-1">
-        <Link to={`/threads/detail/${"12"}`}>
+        <Link to={`/threads/${"12"}`}>
           <h3 className="font-bold text-lg truncate hover:text-clear-chill">
             Title asdhgasdasdasdasdajsdha asjdhgasdjh ajshdgajshg
           </h3>
@@ -39,7 +41,7 @@ function ThreadCard() {
         <span className="bg-deepest-water/50 rounded p-1 text-xs">#html</span>
       </div>
 
-      <div className="col-span-3 flex w-full order-4">
+      <div className="col-span-3 flex w-full order-4 border rounded [&>button:nth-child(2)]:border-x">
         <ThreadCardFooter />
       </div>
     </div>

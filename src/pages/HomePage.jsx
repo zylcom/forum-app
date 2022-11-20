@@ -5,11 +5,11 @@ import ThreadList from "../components/ThreadList";
 function HomePage() {
   return (
     <>
-      <main className="pt-16 pb-20">
+      <div className="pt-16 pb-20">
         <CategoryList />
 
         <ThreadList />
-      </main>
+      </div>
     </>
   );
 }
