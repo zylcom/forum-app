@@ -11,7 +11,7 @@ function CommentList() {
     <>
       <h2 className="text-3xl font-bold mt-10 px-3">Comments</h2>
 
-      {authUser !== null ? (
+      {authUser === null ? (
         <p className="text-sm my-4 px-3">
           You must login to add comment.{" "}
           <Link to="/login" className="text-olympic-blue">

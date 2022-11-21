@@ -14,7 +14,7 @@ function TopUserItem() {
 
       <div
         className="bg-gradient-to-br from-light-shotoku-purple to-blue-genie
-            rounded p-1 gap-y-1 px-3 flex flex-col items-center ml-auto"
+        rounded p-1 gap-y-1 px-3 flex flex-col items-center ml-auto"
       >
         <span className="text-sm">Score</span>
         <span className="text-xs">12312</span>

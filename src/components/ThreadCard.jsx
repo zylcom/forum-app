@@ -26,7 +26,7 @@ function ThreadCard() {
 
       <div className="col-span-2 bg-space-explorer/80 p-2 rounded-b-md rounded-tl-md border-r order-1">
         <Link to={`/threads/${"12"}`}>
-          <h3 className="font-bold text-lg truncate hover:text-clear-chill">
+          <h3 className="font-bold text-lg truncate hover:text-white">
             Title asdhgasdasdasdasdajsdha asjdhgasdjh ajshdgajshg
           </h3>
         </Link>

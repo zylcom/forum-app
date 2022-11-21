@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import NavigationTab from "./components/NavigationTab";
@@ -8,8 +9,20 @@ import HomePage from "./pages/HomePage";
 import LeaderboardsPage from "./pages/LeaderboardsPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import { asyncPreloadProcess } from "./states/isPreload/action";
 
 function App() {
+  const { isPreload = false } = useSelector((states) => states);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(asyncPreloadProcess());
+  }, [dispatch]);
+
+  if (isPreload) {
+    return null;
+  }
+
   return (
     <div className="bg-black-wash min-h-screen font-inter">
       <header>

@@ -7,7 +7,7 @@ import SigninButton from "./SigninButton";
 import SignupButton from "./SignupButton";
 
 function NavBar() {
-  const { authUser } = useSelector((states) => states);
+  const { authUser = null } = useSelector((states) => states);
   const navWrapper = useRef(null);
   let prevScrollPosition = window.pageYOffset;
 

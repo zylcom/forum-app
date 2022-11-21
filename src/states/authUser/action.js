@@ -1,4 +1,4 @@
-import { getMyProfile, login, saveAccessToken } from "../../utils";
+import { getMyProfile, login, register, saveAccessToken } from "../../utils";
 
 const ActionType = {
   SET_AUTH_USER: "SET_AUTH_USER",
@@ -36,10 +36,25 @@ function asyncUnsetAuthUser() {
   };
 }
 
+function asyncRegisterUser({ name, email, password }) {
+  return async (dispatch) => {
+    try {
+      const user = await register({ name, email, password });
+      const token = await login({ email, password });
+
+      saveAccessToken(token);
+      dispatch(setAuthUserActionCreator(user));
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+}
+
 export {
   ActionType,
   setAuthUserActionCreator,
   unsetAuthUserActionCreator,
   asyncSetAuthUser,
   asyncUnsetAuthUser,
+  asyncRegisterUser,
 };
