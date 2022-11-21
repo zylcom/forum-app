@@ -49,10 +49,10 @@ function NavBar() {
         </div>
       ) : (
         <div className="flex items-center gap-x-2 max-w-[200px]">
-          <Avatar />
+          <Avatar url={authUser.avatar} alt={authUser.name} />
 
           <p className="text-center font-light truncate hidden sm:block">
-            Zylcom asdasdasdasd
+            {authUser.name}
           </p>
 
           <NavBarMenu />

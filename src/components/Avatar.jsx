@@ -1,13 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function Avatar() {
+function Avatar({ url, alt }) {
   return (
-    <img
-      src="/react.svg"
-      alt=""
-      className="w-10 h-10 bg-gray-500 rounded-full"
-    />
+    <img src={url} alt={alt} className="w-10 h-10 bg-gray-500 rounded-full" />
   );
 }
+
+Avatar.propTypes = {
+  url: PropTypes.string.isRequired,
+  alt: PropTypes.string,
+};
 
 export default Avatar;

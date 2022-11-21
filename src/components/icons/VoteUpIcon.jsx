@@ -1,10 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function VoteUpIcon() {
+function VoteUpIcon({ fillColor }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
+      fill={fillColor}
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
@@ -25,5 +26,9 @@ function VoteUpIcon() {
     </svg>
   );
 }
+
+VoteUpIcon.propTypes = {
+  fillColor: PropTypes.string,
+};
 
 export default VoteUpIcon;

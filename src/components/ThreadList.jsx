@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import ThreadCard from "./ThreadCard";
 
-function ThreadList() {
+function ThreadList({ threads }) {
+  useEffect(() => {
+    console.log(threads);
+  }, [threads]);
+
   return (
     <div className="mt-10 md:w-3/5 max-w-[1000px] mx-auto bg-navy-blazer">
-      <ThreadCard />
-      <ThreadCard />
-      <ThreadCard />
-      <ThreadCard />
+      {threads.length > 0 ? (
+        threads.map((thread) => <ThreadCard key={thread.id} {...thread} />)
+      ) : (
+        <div>
+          <p>No Threads</p>
+        </div>
+      )}
     </div>
   );
 }
+
+ThreadList.propTypes = {
+  threads: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default ThreadList;
