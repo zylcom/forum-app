@@ -111,7 +111,7 @@ async function getAllThreads() {
 }
 
 async function getThreadDetail(id) {
-  const response = await fetch(`${BASE_URL}/thread/${id}`);
+  const response = await fetch(`${BASE_URL}/threads/${id}`);
   const responseJson = await response.json();
   const { status, message } = responseJson;
 

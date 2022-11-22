@@ -6,7 +6,7 @@ import CommentIcon from "./icons/CommentIcon";
 function CommentButton({ threadId, totalComments }) {
   return (
     <Link
-      to={`/threads/id${threadId}`}
+      to={`/threads/${threadId}`}
       className="grow flex justify-center gap-x-2 items-center"
     >
       <CommentIcon />
@@ -18,7 +18,7 @@ function CommentButton({ threadId, totalComments }) {
 
 CommentButton.propTypes = {
   threadId: PropTypes.string.isRequired,
-  totalComments: PropTypes.string.isRequired,
+  totalComments: PropTypes.number.isRequired,
 };
 
 export default CommentButton;

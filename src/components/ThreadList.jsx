@@ -1,12 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import ThreadCard from "./ThreadCard";
 
 function ThreadList({ threads }) {
-  useEffect(() => {
-    console.log(threads);
-  }, [threads]);
-
   return (
     <div className="mt-10 md:w-3/5 max-w-[1000px] mx-auto bg-navy-blazer">
       {threads.length > 0 ? (

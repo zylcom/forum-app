@@ -1,4 +1,9 @@
-import { getAllThreads, getAllUsers } from "../../utils";
+import {
+  getAllThreads,
+  getAllUsers,
+  neutralizeVoteComment,
+  neutralizeVoteThread,
+} from "../../utils";
 import { receiveThreadsActionCreator } from "../threads/action";
 import { receiveUsersActionCreator } from "../users/action";
 
@@ -16,4 +21,28 @@ function asyncPopulateUsersAndThreads() {
   };
 }
 
-export { asyncPopulateUsersAndThreads };
+function asyncNeutralizeThreadVote(threadId) {
+  return async () => {
+    try {
+      await neutralizeVoteThread(threadId);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+}
+
+function asyncNeutralizeCommentVote({ threadId, commentId }) {
+  return async () => {
+    try {
+      await neutralizeVoteComment({ threadId, commentId });
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+}
+
+export {
+  asyncPopulateUsersAndThreads,
+  asyncNeutralizeThreadVote,
+  asyncNeutralizeCommentVote,
+};

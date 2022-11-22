@@ -2,10 +2,10 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import {
-  asyncNeutralizeThreadVote,
   asyncToggleVoteDownThread,
   asyncToggleVoteUpThread,
 } from "../states/threads/action";
+import { asyncNeutralizeThreadVote } from "../states/shared/action";
 import CommentButton from "./CommentButton";
 import VoteDownButton from "./VoteDownButton";
 import VoteUpButton from "./VoteUpButton";
@@ -13,29 +13,29 @@ import VoteUpButton from "./VoteUpButton";
 function ThreadCardFooter({ threadId, upVotesBy, downVotesBy, totalComments }) {
   const { authUser = null } = useSelector((states) => states);
   const dispatch = useDispatch();
-  const isVotedUp = upVotesBy.includes(authUser?.id);
-  const isVotedDown = downVotesBy.includes(authUser?.id);
+  const isThreadVotedUp = upVotesBy.includes(authUser?.id);
+  const isThreadVotedDown = downVotesBy.includes(authUser?.id);
 
-  function onVoteUp() {
+  function onVoteUpThread() {
     if (authUser === null) {
       return alert("You must sign in to vote a thread!");
     }
 
     dispatch(asyncToggleVoteUpThread(threadId));
 
-    if (isVotedUp) {
+    if (isThreadVotedUp) {
       dispatch(asyncNeutralizeThreadVote(threadId));
     }
   }
 
-  function onVoteDown() {
+  function onVoteDownThread() {
     if (authUser === null) {
       return alert("You must sign in to vote a thread!");
     }
 
     dispatch(asyncToggleVoteDownThread(threadId));
 
-    if (isVotedDown) {
+    if (isThreadVotedDown) {
       dispatch(asyncNeutralizeThreadVote(threadId));
     }
   }
@@ -43,15 +43,15 @@ function ThreadCardFooter({ threadId, upVotesBy, downVotesBy, totalComments }) {
   return (
     <>
       <VoteUpButton
-        voteUp={onVoteUp}
+        voteUp={onVoteUpThread}
         totalVotesUp={upVotesBy.length}
-        isVoted={isVotedUp}
+        isVoted={isThreadVotedUp}
       />
 
       <VoteDownButton
-        voteDown={onVoteDown}
+        voteDown={onVoteDownThread}
         totalVotesDown={downVotesBy.length}
-        isVoted={isVotedDown}
+        isVoted={isThreadVotedDown}
       />
 
       <CommentButton threadId={threadId} totalComments={totalComments} />

@@ -1,15 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import CommentInput from "./CommentInput";
 import CommentItem from "./CommentItem";
 
-function CommentList() {
+function CommentList({ comments, threadId }) {
   const { authUser } = useSelector((states) => states);
 
   return (
     <>
-      <h2 className="text-3xl font-bold mt-10 px-3">Comments</h2>
+      <h2 className="text-3xl font-bold px-3">Comments</h2>
 
       {authUser === null ? (
         <p className="text-sm my-4 px-3">
@@ -19,17 +20,27 @@ function CommentList() {
           </Link>
         </p>
       ) : (
-        <CommentInput />
+        <CommentInput threadId={threadId} />
       )}
 
       <div className="flex flex-col p-3 gap-y-5 border-t border-t-infinity">
-        <CommentItem />
-        <CommentItem />
-        <CommentItem />
-        <CommentItem />
+        {comments.length > 0 ? (
+          comments.map((comment) => (
+            <CommentItem key={comment.id} {...comment} authUser={authUser} />
+          ))
+        ) : (
+          <div>
+            <p>No Comments</p>
+          </div>
+        )}
       </div>
     </>
   );
 }
+
+CommentList.propTypes = {
+  comments: PropTypes.arrayOf(PropTypes.object).isRequired,
+  threadId: PropTypes.string.isRequired,
+};
 
 export default CommentList;
