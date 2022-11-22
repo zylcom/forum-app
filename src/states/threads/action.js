@@ -31,10 +31,10 @@ function neutralizeVoteThreadActionCreator({ threadId, userId }) {
   };
 }
 
-function asyncAddThread({ title, body, category = null }) {
+function asyncAddThread({ title, body, category = "general" }) {
   return async (dispatch) => {
     try {
-      const thread = createThread({ title, body, category });
+      const thread = await createThread({ title, body, category });
 
       dispatch(addThreadActionCreator(thread));
     } catch (error) {
