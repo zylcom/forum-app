@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authUserReducer from "./authUser/reducer";
+import categoriesReducer from "./categories/reducer";
 import isPreLoadReducer from "./isPreload/reducer";
 import threadDetailReducer from "./threadDetail/reducer";
 import threadsReducer from "./threads/reducer";
@@ -12,6 +13,7 @@ const store = configureStore({
     threadDetail: threadDetailReducer,
     threads: threadsReducer,
     users: usersReducer,
+    categories: categoriesReducer,
   },
 });
 

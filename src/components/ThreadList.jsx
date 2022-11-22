@@ -8,9 +8,9 @@ function ThreadList({ threads }) {
       {threads.length > 0 ? (
         threads.map((thread) => <ThreadCard key={thread.id} {...thread} />)
       ) : (
-        <div>
-          <p>No Threads</p>
-        </div>
+        <h2 className="text-center text-3xl py-10 text-vampire-bite">
+          No Threads
+        </h2>
       )}
     </div>
   );

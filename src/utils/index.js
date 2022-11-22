@@ -22,5 +22,15 @@ function postedAt(date) {
   return "just now";
 }
 
-export { postedAt };
+function extractAllCategoryFromThreads(threads) {
+  const categories = new Set();
+
+  threads.map((thread) => {
+    categories.add(thread.category);
+  });
+
+  return [...categories];
+}
+
+export { postedAt, extractAllCategoryFromThreads };
 export * from "./api";
