@@ -5,13 +5,15 @@ import useInput from "../hooks/useInput";
 import { asyncAddComment } from "../states/threadDetail/action";
 
 function CommentInput({ threadId }) {
-  const [comment, onCommentChange] = useInput("");
+  const [comment, onCommentChange, setComment] = useInput("");
   const dispatch = useDispatch();
 
   function addComment(e) {
     e.preventDefault();
 
     dispatch(asyncAddComment({ threadId, content: comment }));
+
+    setComment("");
   }
 
   return (

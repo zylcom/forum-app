@@ -7,10 +7,10 @@ import Avatar from "./Avatar";
 import VoteDownButton from "./VoteDownButton";
 import VoteUpButton from "./VoteUpButton";
 import {
-  asyncToggleVoteDownComment,
-  asyncToggleVoteUpComment,
+  asyncNeutralizeCommentVote,
+  asyncVoteDownComment,
+  asyncVoteUpComment,
 } from "../states/threadDetail/action";
-import { asyncNeutralizeCommentVote } from "../states/shared/action";
 
 function CommentItem({
   id,
@@ -28,26 +28,26 @@ function CommentItem({
 
   async function onVoteUpComment() {
     if (authUser === null) {
-      return alert("You must sign in to vote a thread!");
+      return alert("You must sign in to vote a comment!");
     }
-
-    dispatch(asyncToggleVoteUpComment({ threadId, commentId: id }));
 
     if (isCommentVotedUp) {
-      dispatch(asyncNeutralizeCommentVote({ threadId, commentId: id }));
+      return dispatch(asyncNeutralizeCommentVote({ threadId, commentId: id }));
     }
+
+    dispatch(asyncVoteUpComment({ threadId, commentId: id }));
   }
 
   function onVoteDownComment() {
     if (authUser === null) {
-      return alert("You must sign in to vote a thread!");
+      return alert("You must sign in to vote a comment!");
     }
-
-    dispatch(asyncToggleVoteDownComment({ threadId, commentId: id }));
 
     if (isCommentVotedDown) {
-      dispatch(asyncNeutralizeCommentVote({ threadId, commentId: id }));
+      return dispatch(asyncNeutralizeCommentVote({ threadId, commentId: id }));
     }
+
+    dispatch(asyncVoteDownComment({ threadId, commentId: id }));
   }
 
   return (

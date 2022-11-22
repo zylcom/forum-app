@@ -49,7 +49,7 @@ function threadDetailReducer(threadDetail = null, action = {}) {
         comments: [action.payload.comment, ...threadDetail.comments],
       };
 
-    case ActionType.TOGGLE_VOTE_UP_COMMENT:
+    case ActionType.VOTE_UP_COMMENT:
       return {
         ...threadDetail,
         comments: threadDetail.comments.map((comment) => {
@@ -57,7 +57,7 @@ function threadDetailReducer(threadDetail = null, action = {}) {
             return {
               ...comment,
               upVotesBy: comment.upVotesBy.includes(action.payload.userId)
-                ? comment.upVotesBy.filter((id) => id !== action.payload.userId)
+                ? comment.upVotesBy
                 : [...comment.upVotesBy, action.payload.userId],
               downVotesBy: comment.downVotesBy.includes(action.payload.userId)
                 ? comment.downVotesBy.filter(
@@ -71,7 +71,7 @@ function threadDetailReducer(threadDetail = null, action = {}) {
         }),
       };
 
-    case ActionType.TOGGLE_VOTE_DOWN_COMMENT:
+    case ActionType.VOTE_DOWN_COMMENT:
       return {
         ...threadDetail,
         comments: threadDetail.comments.map((comment) => {
@@ -82,10 +82,28 @@ function threadDetailReducer(threadDetail = null, action = {}) {
                 ? comment.upVotesBy.filter((id) => id !== action.payload.userId)
                 : comment.upVotesBy,
               downVotesBy: comment.downVotesBy.includes(action.payload.userId)
-                ? comment.downVotesBy.filter(
-                  (id) => id !== action.payload.userId,
-                )
+                ? comment.downVotesBy
                 : [...comment.downVotesBy, action.payload.userId],
+            };
+          }
+
+          return comment;
+        }),
+      };
+
+    case ActionType.NEUTRALIZE_COMMENT_VOTE:
+      return {
+        ...threadDetail,
+        comments: threadDetail.comments.map((comment) => {
+          if (comment.id === action.payload.commentId) {
+            return {
+              ...comment,
+              upVotesBy: comment.upVotesBy.filter(
+                (id) => id !== action.payload.userId,
+              ),
+              downVotesBy: comment.downVotesBy.filter(
+                (id) => id !== action.payload.userId,
+              ),
             };
           }
 
