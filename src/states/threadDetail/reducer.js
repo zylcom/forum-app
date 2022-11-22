@@ -8,11 +8,11 @@ function threadDetailReducer(threadDetail = null, action = {}) {
     case ActionType.CLEAR_THREAD_DETAIL:
       return null;
 
-    case ActionType.TOGGLE_VOTE_UP_THREAD_DETAIL:
+    case ActionType.VOTE_UP_THREAD_DETAIL:
       return {
         ...threadDetail,
         upVotesBy: threadDetail.upVotesBy.includes(action.payload.userId)
-          ? threadDetail.upVotesBy.filter((id) => id !== action.payload.userId)
+          ? threadDetail.upVotesBy
           : [...threadDetail.upVotesBy, action.payload.userId],
         downVotesBy: threadDetail.downVotesBy.includes(action.payload.userId)
           ? threadDetail.downVotesBy.filter(
@@ -21,17 +21,26 @@ function threadDetailReducer(threadDetail = null, action = {}) {
           : threadDetail.downVotesBy,
       };
 
-    case ActionType.TOGGLE_VOTE_DOWN_THREAD_DETAIL:
+    case ActionType.VOTE_DOWN_THREAD_DETAIL:
       return {
         ...threadDetail,
         upVotesBy: threadDetail.upVotesBy.includes(action.payload.userId)
           ? threadDetail.upVotesBy.filter((id) => id !== action.payload.userId)
           : threadDetail.upVotesBy,
         downVotesBy: threadDetail.downVotesBy.includes(action.payload.userId)
-          ? threadDetail.downVotesBy.filter(
-            (id) => id !== action.payload.userId,
-          )
+          ? threadDetail.downVotesBy
           : [...threadDetail.downVotesBy, action.payload.userId],
+      };
+
+    case ActionType.NEUTRALIZE_THREAD_DETAIL_VOTE:
+      return {
+        ...threadDetail,
+        upVotesBy: threadDetail.upVotesBy.filter(
+          (id) => id !== action.payload.userId,
+        ),
+        downVotesBy: threadDetail.downVotesBy.filter(
+          (id) => id !== action.payload.userId,
+        ),
       };
 
     case ActionType.ADD_COMMENT:

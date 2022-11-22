@@ -1,14 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import {
-  asyncToggleVoteDownThread,
-  asyncToggleVoteUpThread,
-} from "../states/threads/action";
-import { asyncNeutralizeThreadVote } from "../states/shared/action";
 import CommentButton from "./CommentButton";
 import VoteDownButton from "./VoteDownButton";
 import VoteUpButton from "./VoteUpButton";
+import { asyncNeutralizeThreadVote } from "../states/shared/action";
+import {
+  asyncVoteDownThread,
+  asyncVoteUpThread,
+} from "../states/threads/action";
 
 function ThreadCardFooter({ threadId, upVotesBy, downVotesBy, totalComments }) {
   const { authUser = null } = useSelector((states) => states);
@@ -21,11 +21,11 @@ function ThreadCardFooter({ threadId, upVotesBy, downVotesBy, totalComments }) {
       return alert("You must sign in to vote a thread!");
     }
 
-    dispatch(asyncToggleVoteUpThread(threadId));
-
     if (isThreadVotedUp) {
-      dispatch(asyncNeutralizeThreadVote(threadId));
+      return dispatch(asyncNeutralizeThreadVote(threadId));
     }
+
+    dispatch(asyncVoteUpThread(threadId));
   }
 
   function onVoteDownThread() {
@@ -33,11 +33,11 @@ function ThreadCardFooter({ threadId, upVotesBy, downVotesBy, totalComments }) {
       return alert("You must sign in to vote a thread!");
     }
 
-    dispatch(asyncToggleVoteDownThread(threadId));
-
     if (isThreadVotedDown) {
-      dispatch(asyncNeutralizeThreadVote(threadId));
+      return dispatch(asyncNeutralizeThreadVote(threadId));
     }
+
+    dispatch(asyncVoteDownThread(threadId));
   }
 
   return (

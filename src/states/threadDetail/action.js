@@ -10,8 +10,9 @@ import {
 const ActionType = {
   RECEIVE_THREAD_DETAIL: "RECEIVE_THREAD_DETAIL",
   CLEAR_THREAD_DETAIL: "CLEAR_THREAD_DETAIL",
-  TOGGLE_VOTE_UP_THREAD_DETAIL: "TOGGLE_VOTE_UP_THREAD_DETAIL",
-  TOGGLE_VOTE_DOWN_THREAD_DETAIL: "TOGGLE_VOTE_DOWN_THREAD_DETAIL",
+  VOTE_UP_THREAD_DETAIL: "VOTE_UP_THREAD_DETAIL",
+  VOTE_DOWN_THREAD_DETAIL: "VOTE_DOWN_THREAD_DETAIL",
+  NEUTRALIZE_THREAD_DETAIL_VOTE: "NEUTRALIZE_THREAD_DETAIL_VOTE",
   ADD_COMMENT: "ADD_COMMENT",
   TOGGLE_VOTE_UP_COMMENT: "TOGGLE_VOTE_UP_COMMENT",
   TOGGLE_VOTE_DOWN_COMMENT: "TOGGLE_VOTE_DOWN_COMMENT",
@@ -25,13 +26,20 @@ function clearThreadDetailActionCreator() {
   return { type: ActionType.CLEAR_THREAD_DETAIL };
 }
 
-function toggleVoteUpThreadDetail(userId) {
-  return { type: ActionType.TOGGLE_VOTE_UP_THREAD_DETAIL, payload: { userId } };
+function voteUpThreadDetail(userId) {
+  return { type: ActionType.VOTE_UP_THREAD_DETAIL, payload: { userId } };
 }
 
-function toggleVoteDownThreadDetail(userId) {
+function voteDownThreadDetail(userId) {
   return {
-    type: ActionType.TOGGLE_VOTE_DOWN_THREAD_DETAIL,
+    type: ActionType.VOTE_DOWN_THREAD_DETAIL,
+    payload: { userId },
+  };
+}
+
+function neutralizeVoteThreadDetailActionCreator(userId) {
+  return {
+    type: ActionType.NEUTRALIZE_THREAD_DETAIL_VOTE,
     payload: { userId },
   };
 }
@@ -68,11 +76,11 @@ function asyncReceiveThreadDetail(threadId) {
   };
 }
 
-function asyncToggleVoteUpThreadDetail() {
+function asyncVoteUpThreadDetail() {
   return async (dispatch, getState) => {
     const { authUser, threadDetail } = getState();
 
-    dispatch(toggleVoteUpThreadDetail(authUser.id));
+    dispatch(voteUpThreadDetail(authUser.id));
 
     try {
       await upVoteThread(threadDetail.id);
@@ -82,11 +90,11 @@ function asyncToggleVoteUpThreadDetail() {
   };
 }
 
-function asyncToggleVoteDownThreadDetail() {
+function asyncVoteDownThreadDetail() {
   return async (dispatch, getState) => {
     const { authUser, threadDetail } = getState();
 
-    dispatch(toggleVoteDownThreadDetail(authUser.id));
+    dispatch(voteDownThreadDetail(authUser.id));
 
     try {
       await downVoteThread(threadDetail.id);
@@ -144,11 +152,15 @@ export {
   ActionType,
   receiveThreadDetailActionCreator,
   clearThreadDetailActionCreator,
-  toggleVoteUpThreadDetail,
-  toggleVoteDownThreadDetail,
+  voteUpThreadDetail,
+  voteDownThreadDetail,
+  neutralizeVoteThreadDetailActionCreator,
+  addCommentActionCreator,
+  toggleVoteUpCommentActionCreator,
+  toggleVoteDownCommentActionCreator,
   asyncReceiveThreadDetail,
-  asyncToggleVoteUpThreadDetail,
-  asyncToggleVoteDownThreadDetail,
+  asyncVoteUpThreadDetail,
+  asyncVoteDownThreadDetail,
   asyncAddComment,
   asyncToggleVoteUpComment,
   asyncToggleVoteDownComment,

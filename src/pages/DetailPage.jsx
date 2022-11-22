@@ -6,46 +6,46 @@ import CommentList from "../components/CommentList";
 import VoteDownButton from "../components/VoteDownButton";
 import VoteUpButton from "../components/VoteUpButton";
 import { asyncNeutralizeThreadVote } from "../states/shared/action";
+import { postedAt } from "../utils";
 import {
   asyncReceiveThreadDetail,
-  asyncToggleVoteDownThreadDetail,
-  asyncToggleVoteUpThreadDetail,
+  asyncVoteDownThreadDetail,
+  asyncVoteUpThreadDetail,
 } from "../states/threadDetail/action";
-import { postedAt } from "../utils";
 
 function DetailPage() {
   const { id } = useParams();
   const { threadDetail = null, authUser } = useSelector((states) => states);
   const dispatch = useDispatch();
-  const isVotedUp = threadDetail?.upVotesBy.includes(authUser?.id);
-  const isVotedDown = threadDetail?.downVotesBy.includes(authUser?.id);
+  const isThreadVotedUp = threadDetail?.upVotesBy.includes(authUser?.id);
+  const isThreadVotedDown = threadDetail?.downVotesBy.includes(authUser?.id);
 
   useEffect(() => {
     dispatch(asyncReceiveThreadDetail(id));
   }, [id, dispatch]);
 
-  function onVoteUp() {
+  function onVoteUpThreadDetail() {
     if (authUser === null) {
       return alert("You must sign in to vote a thread!");
     }
 
-    dispatch(asyncToggleVoteUpThreadDetail());
-
-    if (isVotedUp) {
-      dispatch(asyncNeutralizeThreadVote(id));
+    if (isThreadVotedUp) {
+      return dispatch(asyncNeutralizeThreadVote(id));
     }
+
+    dispatch(asyncVoteUpThreadDetail());
   }
 
-  function onVoteDown() {
+  function onVoteDownThreadDetail() {
     if (authUser === null) {
       return alert("You must sign in to vote a thread!");
     }
 
-    dispatch(asyncToggleVoteDownThreadDetail());
-
-    if (isVotedDown) {
-      dispatch(asyncNeutralizeThreadVote(id));
+    if (isThreadVotedDown) {
+      return dispatch(asyncNeutralizeThreadVote(id));
     }
+
+    dispatch(asyncVoteDownThreadDetail());
   }
 
   if (threadDetail === null) {
@@ -74,14 +74,14 @@ function DetailPage() {
 
           <div className="flex flex-col items-start">
             <VoteUpButton
-              voteUp={onVoteUp}
+              voteUp={onVoteUpThreadDetail}
               totalVotesUp={threadDetail.upVotesBy.length}
-              isVoted={isVotedUp}
+              isVoted={isThreadVotedUp}
             />
             <VoteDownButton
-              voteDown={onVoteDown}
+              voteDown={onVoteDownThreadDetail}
               totalVotesDown={threadDetail.downVotesBy.length}
-              isVoted={isVotedDown}
+              isVoted={isThreadVotedDown}
             />
           </div>
         </div>

@@ -4,7 +4,11 @@ import {
   neutralizeVoteComment,
   neutralizeVoteThread,
 } from "../../utils";
-import { receiveThreadsActionCreator } from "../threads/action";
+import {
+  neutralizeVoteThreadActionCreator,
+  receiveThreadsActionCreator,
+} from "../threads/action";
+import { neutralizeVoteThreadDetailActionCreator } from "../threadDetail/action";
 import { receiveUsersActionCreator } from "../users/action";
 
 function asyncPopulateUsersAndThreads() {
@@ -22,7 +26,17 @@ function asyncPopulateUsersAndThreads() {
 }
 
 function asyncNeutralizeThreadVote(threadId) {
-  return async () => {
+  return async (dispatch, getState) => {
+    const { authUser, threadDetail } = getState();
+
+    dispatch(
+      neutralizeVoteThreadActionCreator({ threadId, userId: authUser.id }),
+    );
+
+    if (threadDetail !== null) {
+      dispatch(neutralizeVoteThreadDetailActionCreator(authUser.id));
+    }
+
     try {
       await neutralizeVoteThread(threadId);
     } catch (error) {
