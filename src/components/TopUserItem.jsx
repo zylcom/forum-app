@@ -1,26 +1,32 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Avatar from "./Avatar";
 
-function TopUserItem() {
+function TopUserItem({ index, avatar, name, score }) {
   return (
     <div className="bg-white/5 p-3 rounded-md flex items-center gap-x-1">
-      <span className="text-3xl mr-2">1.</span>
+      <span className="text-3xl mr-2">{index + 1}.</span>
 
-      <Avatar />
+      <Avatar url={avatar} alt={name} />
 
-      <p className="text-xl mx-2 truncate">
-        Zylcomasdasdadabsdjh asjd ajshdbajhsd asjdashdahsd
-      </p>
+      <p className="text-xl mx-2 truncate">{name}</p>
 
       <div
         className="bg-gradient-to-br from-light-shotoku-purple to-blue-genie
         rounded p-1 gap-y-1 px-3 flex flex-col items-center ml-auto"
       >
         <span className="text-sm">Score</span>
-        <span className="text-xs">12312</span>
+        <span className="text-xs">{score}</span>
       </div>
     </div>
   );
 }
+
+TopUserItem.propTypes = {
+  index: PropTypes.number.isRequired,
+  avatar: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
+};
 
 export default TopUserItem;
