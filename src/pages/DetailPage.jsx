@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import parse from "html-react-parser";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Avatar from "../components/Avatar";
@@ -92,7 +93,9 @@ function DetailPage() {
 
         <h1 className="text-3xl font-bold my-7">{threadDetail.title}</h1>
 
-        <p className="font-montserrat font-medium">{threadDetail.body}</p>
+        <div className="font-montserrat font-medium">
+          {parse(threadDetail.body)}
+        </div>
       </div>
 
       <aside

@@ -30,7 +30,7 @@ function CommentList({ comments, threadId }) {
           ))
         ) : (
           <div>
-            <p>No Comments</p>
+            <span>There no comments</span>
           </div>
         )}
       </div>

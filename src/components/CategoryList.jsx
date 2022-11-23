@@ -22,9 +22,9 @@ function CategoryList({ currentCategory, categories, categoryChangeHandler }) {
             />
           ))
         ) : (
-          <p className="whitespace-nowrap text-vampire-bite">
+          <span className="whitespace-nowrap text-vampire-bite">
             There no categories.
-          </p>
+          </span>
         )}
       </div>
     </div>

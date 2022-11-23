@@ -20,7 +20,7 @@ function CreateThreadInput() {
   }
 
   return (
-    <form action="" className="px-5">
+    <form className="px-5 md:w-3/5 max-w-[1000px] mx-auto">
       <label htmlFor="title" className="block">
         Title
       </label>

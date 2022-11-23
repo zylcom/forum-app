@@ -51,9 +51,12 @@ function NavBar() {
         <div className="flex items-center gap-x-2 max-w-[200px]">
           <Avatar url={authUser.avatar} alt={authUser.name} />
 
-          <p className="text-center font-light truncate hidden sm:block">
+          <span
+            className="text-center font-light truncate hidden sm:block"
+            title={authUser.name}
+          >
             {authUser.name}
-          </p>
+          </span>
 
           <NavBarMenu />
         </div>

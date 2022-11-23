@@ -1,4 +1,5 @@
 import React from "react";
+import parse from "html-react-parser";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { postedAt } from "../utils";
@@ -28,14 +29,14 @@ function ThreadCard({
         <div className="flex flex-col items-center">
           <Avatar url={user.avatar} alt={user.name} />
 
-          <p className="text-xs text-center font-light break-all mt-1">
+          <span className="text-xs text-center font-light break-all mt-1">
             {user.name}
-          </p>
+          </span>
         </div>
 
-        <p className="text-[length:10px] font-light mt-2">
+        <span className="text-[length:10px] font-light mt-2">
           {postedAt(createdAt)}
-        </p>
+        </span>
       </div>
 
       <div className="col-span-2 bg-space-explorer p-2 rounded-b-md rounded-tl-md border-r order-1">
@@ -48,13 +49,13 @@ function ThreadCard({
           </h3>
         </Link>
 
-        <p
+        <div
           className="text-sm mt-3 overflow-hidden leading-5 min-h-[32px] max-h-[calc(3*16px*1.25)] relative
           before:content-[''] before:absolute before:h-[calc(16px*1.25)] before:w-full before:bottom-0
           before:pointer-events-none before:bg-gradient-to-t before:from-space-explorer"
         >
-          {body}
-        </p>
+          {parse(body)}
+        </div>
       </div>
 
       <div className="flex gap-1 flex-wrap col-span-3 order-3">

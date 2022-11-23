@@ -9,7 +9,9 @@ function TopUserItem({ index, avatar, name, score }) {
 
       <Avatar url={avatar} alt={name} />
 
-      <p className="text-xl mx-2 truncate">{name}</p>
+      <span className="text-xl mx-2 truncate" title={name}>
+        {name}
+      </span>
 
       <div
         className="bg-gradient-to-br from-light-shotoku-purple to-blue-genie

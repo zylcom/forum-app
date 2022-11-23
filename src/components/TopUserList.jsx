@@ -24,7 +24,7 @@ function TopUserList() {
           />
         ))
       ) : (
-        <p>No leaderboards</p>
+        <span>There no leaderboards</span>
       )}
     </div>
   );

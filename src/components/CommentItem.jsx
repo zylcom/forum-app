@@ -1,4 +1,5 @@
 import React from "react";
+import parse from "html-react-parser";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -56,20 +57,24 @@ function CommentItem({
         <Avatar url={owner.avatar} />
 
         <div className="w-full overflow-hidden">
-          <p className="text-sm truncate">{owner.name}</p>
+          <span className="text-sm truncate" title={owner.name}>
+            {owner.name}
+          </span>
 
-          <p className="text-[length:10px] font-light">{postedAt(createdAt)}</p>
+          <span className="text-[length:10px] font-light">
+            {postedAt(createdAt)}
+          </span>
         </div>
       </div>
 
-      <p
+      <div
         className="font-montserrat overflow-hidden leading-5 max-h-[calc(3*16px*1.25)] relative before:content-['']
         before:absolute before:h-[calc(16px*1.25)] before:w-full before:bottom-0 before:pointer-events-none
         before:bg-gradient-to-t [&:has(+_input:not(:checked))]:before:from-black-wash
         [&:has(+_input:checked)]:max-h-[none] min-h-[40px]"
       >
-        {content}
-      </p>
+        {parse(content)}
+      </div>
 
       <input
         type="checkbox"
