@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { postedAt } from "../utils";
 import Avatar from "./Avatar";
 import VoteDownButton from "./VoteDownButton";
 import VoteUpButton from "./VoteUpButton";
+import { postedAt } from "../utils";
 import {
   asyncNeutralizeCommentVote,
   asyncVoteDownComment,

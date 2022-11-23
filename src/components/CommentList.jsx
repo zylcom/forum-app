@@ -1,7 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import CommentInput from "./CommentInput";
 import CommentItem from "./CommentItem";
 

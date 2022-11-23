@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { asyncUnsetAuthUser } from "../states/authUser/action";
 import ChevronRightIcon from "./icons/ChevronRightIcon";
+import { asyncUnsetAuthUser } from "../states/authUser/action";
 
 function NavBarMenu() {
   const location = useLocation().pathname;

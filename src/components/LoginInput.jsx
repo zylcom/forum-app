@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/useInput";
-import { asyncSetAuthUser } from "../states/authUser/action";
 import EnvelopeIcon from "./icons/EnvelopeIcon";
 import KeyIcon from "./icons/KeyIcon";
 import SubmitButton from "./SubmitButton";
+import { asyncSetAuthUser } from "../states/authUser/action";
 
 function LoginInput() {
   const { authUser = null } = useSelector((states) => states);

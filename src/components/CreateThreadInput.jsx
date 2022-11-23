@@ -2,8 +2,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/useInput";
-import { asyncAddThread } from "../states/threads/action";
 import SubmitButton from "./SubmitButton";
+import { asyncAddThread } from "../states/threads/action";
 
 function CreateThreadInput() {
   const [title, onTitleChange] = useInput("");

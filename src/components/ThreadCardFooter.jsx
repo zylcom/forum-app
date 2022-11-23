@@ -1,7 +1,7 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
 import CommentButton from "./CommentButton";
 import VoteDownButton from "./VoteDownButton";
 import VoteUpButton from "./VoteUpButton";

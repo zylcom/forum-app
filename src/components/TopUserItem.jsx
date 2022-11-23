@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Avatar from "./Avatar";
 import { useSelector } from "react-redux";
+import Avatar from "./Avatar";
 
 function TopUserItem({ index, avatar, name, score }) {
   const { authUser } = useSelector((states) => states);

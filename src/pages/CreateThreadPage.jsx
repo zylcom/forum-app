@@ -1,7 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import CreateThreadInput from "../components/CreateThreadInput";
 
 function CreateThreadPage() {

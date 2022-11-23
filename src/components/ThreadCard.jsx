@@ -1,10 +1,10 @@
 import React from "react";
 import parse from "html-react-parser";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { postedAt } from "../utils";
+import { Link } from "react-router-dom";
 import Avatar from "./Avatar";
 import ThreadCardFooter from "./ThreadCardFooter";
+import { postedAt } from "../utils";
 
 function ThreadCard({
   id,

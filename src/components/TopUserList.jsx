@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { asyncReceiveLeaderboards } from "../states/leaderboards/action";
 import TopUserItem from "./TopUserItem";
+import { asyncReceiveLeaderboards } from "../states/leaderboards/action";
 
 function TopUserList() {
   const { leaderboards = [] } = useSelector((states) => states);

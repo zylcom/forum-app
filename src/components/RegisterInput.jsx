@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/useInput";
-import { asyncRegisterUser } from "../states/authUser/action";
 import EnvelopeIcon from "./icons/EnvelopeIcon";
 import KeyIcon from "./icons/KeyIcon";
 import UserIcon from "./icons/UserIcon";
 import SubmitButton from "./SubmitButton";
+import { asyncRegisterUser } from "../states/authUser/action";
 
 function RegisterInput() {
   const [name, onNameChange] = useInput("");
