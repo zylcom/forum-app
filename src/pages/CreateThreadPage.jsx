@@ -1,45 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import CreateThreadInput from "../components/CreateThreadInput";
 
 function CreateThreadPage() {
-  const [counter, setCounter] = useState(5);
   const { authUser = null } = useSelector((states) => states);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    let countdown;
-    let redirectToLoginPage;
-
-    if (authUser === null) {
-      countdown = setInterval(() => {
-        setCounter((prevState) => prevState - 1);
-      }, 1000);
-
-      redirectToLoginPage = setTimeout(() => {
-        navigate("/login");
-      }, 6000);
-    }
-
-    return () => {
-      clearInterval(countdown);
-      clearTimeout(redirectToLoginPage);
-    };
-  }, [authUser]);
+  let timerInterval;
 
   if (authUser === null) {
-    return (
-      <div className="min-h-screen flex items-center justify-center px-5">
-        <p className="text-2xl font-medium text-white-edgar">
-          You must sign in to create a thread. You will be redirect to{" "}
-          <Link to="/login" className="text-clear-chill underline">
-            sign in
-          </Link>{" "}
-          page in {counter} seconds.
-        </p>
-      </div>
-    );
+    Swal.fire({
+      title: "You must sign in to create a thread.",
+      icon: "info",
+      html: "You will be redirect to <u><a href='/login'>Sign in</a></u> page in <b></b> seconds.",
+      timer: 5000,
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      allowEnterKey: false,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        const b = Swal.getHtmlContainer().querySelector("b");
+        timerInterval = setInterval(() => {
+          b.textContent = Math.floor(Swal.getTimerLeft() / 1000) + 1;
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      },
+    }).then((result) => {
+      if (result.dismiss === Swal.DismissReason.timer) {
+        navigate("/login");
+      }
+    });
+
+    return null;
   }
   return (
     <div className="py-16 text-white">

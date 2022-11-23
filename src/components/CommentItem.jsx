@@ -1,6 +1,7 @@
 import React from "react";
 import parse from "html-react-parser";
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { postedAt } from "../utils";
@@ -29,26 +30,46 @@ function CommentItem({
 
   async function onVoteUpComment() {
     if (authUser === null) {
-      return alert("You must sign in to vote a comment!");
+      return Swal.fire({
+        icon: "info",
+        title: "You must sign in to vote a comment.",
+        confirmButtonText: "<a href='/login'>Sign In</a>",
+        showCancelButton: true,
+      });
     }
 
     if (isCommentVotedUp) {
-      return dispatch(asyncNeutralizeCommentVote({ threadId, commentId: id }));
+      return dispatch(
+        asyncNeutralizeCommentVote({
+          threadId,
+          commentId: id,
+          isCommentVotedUp,
+        }),
+      );
     }
 
-    dispatch(asyncVoteUpComment({ threadId, commentId: id }));
+    dispatch(
+      asyncVoteUpComment({ threadId, commentId: id, isCommentVotedDown }),
+    );
   }
 
   function onVoteDownComment() {
     if (authUser === null) {
-      return alert("You must sign in to vote a comment!");
+      return Swal.fire({
+        icon: "info",
+        title: "You must sign in to vote a comment.",
+        confirmButtonText: "<a href='/login'>Sign In</a>",
+        showCancelButton: true,
+      });
     }
 
     if (isCommentVotedDown) {
       return dispatch(asyncNeutralizeCommentVote({ threadId, commentId: id }));
     }
 
-    dispatch(asyncVoteDownComment({ threadId, commentId: id }));
+    dispatch(
+      asyncVoteDownComment({ threadId, commentId: id, isCommentVotedUp }),
+    );
   }
 
   return (
@@ -58,7 +79,7 @@ function CommentItem({
 
         <div className="w-full overflow-hidden">
           <span className="text-sm truncate" title={owner.name}>
-            {owner.name}
+            {owner.name} &bull;{" "}
           </span>
 
           <span className="text-[length:10px] font-light">

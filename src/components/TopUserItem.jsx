@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Avatar from "./Avatar";
+import { useSelector } from "react-redux";
 
 function TopUserItem({ index, avatar, name, score }) {
+  const { authUser } = useSelector((states) => states);
   return (
     <div className="bg-white/5 p-3 rounded-md flex items-center gap-x-1">
       <span className="text-3xl mr-2">{index + 1}.</span>
@@ -10,7 +12,7 @@ function TopUserItem({ index, avatar, name, score }) {
       <Avatar url={avatar} alt={name} />
 
       <span className="text-xl mx-2 truncate" title={name}>
-        {name}
+        {name === authUser?.name ? `${name} (Anda)` : name}
       </span>
 
       <div

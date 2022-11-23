@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { createThread, downVoteThread, upVoteThread } from "../../utils";
 
 const ActionType = {
@@ -38,12 +39,28 @@ function asyncAddThread({ title, body, category = "general" }) {
 
       dispatch(addThreadActionCreator(thread));
     } catch (error) {
-      alert(error.message);
+      if (error.message === "Token maximum age exceeded") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          html: `<b>${error.message}</b> <br /> Please re-login`,
+          confirmButtonText: "<a href='/login'>Sign In</a>",
+          showCancelButton: true,
+        });
+
+        return;
+      }
+
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
     }
   };
 }
 
-function asyncVoteUpThread(threadId) {
+function asyncVoteUpThread({ threadId, isVotedDown }) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
 
@@ -52,14 +69,38 @@ function asyncVoteUpThread(threadId) {
     try {
       await upVoteThread(threadId);
     } catch (error) {
-      alert(error.message);
+      if (isVotedDown) {
+        dispatch(
+          voteDownThreadActionCreator({ userId: authUser.id, threadId }),
+        );
+      } else {
+        dispatch(
+          neutralizeVoteThreadActionCreator({ userId: authUser.id, threadId }),
+        );
+      }
 
-      dispatch(voteUpThreadActionCreator({ userId: authUser.id, threadId }));
+      if (error.message === "Token maximum age exceeded") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          html: `<b>${error.message}</b> <br /> Please re-login`,
+          confirmButtonText: "<a href='/login'>Sign In</a>",
+          showCancelButton: true,
+        });
+
+        return;
+      }
+
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
     }
   };
 }
 
-function asyncVoteDownThread(threadId) {
+function asyncVoteDownThread({ threadId, isVotedUp }) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
 
@@ -68,9 +109,31 @@ function asyncVoteDownThread(threadId) {
     try {
       await downVoteThread(threadId);
     } catch (error) {
-      alert(error.message);
+      if (isVotedUp) {
+        dispatch(voteUpThreadActionCreator({ userId: authUser.id, threadId }));
+      } else {
+        dispatch(
+          neutralizeVoteThreadActionCreator({ userId: authUser.id, threadId }),
+        );
+      }
 
-      dispatch(voteDownThreadActionCreator({ userId: authUser.id, threadId }));
+      if (error.message === "Token maximum age exceeded") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          html: `<b>${error.message}</b> <br /> Please re-login`,
+          confirmButtonText: "<a href='/login'>Sign In</a>",
+          showCancelButton: true,
+        });
+
+        return;
+      }
+
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
     }
   };
 }

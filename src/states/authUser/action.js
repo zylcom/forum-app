@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { getMyProfile, login, register, saveAccessToken } from "../../utils";
 
 const ActionType = {
@@ -24,7 +25,11 @@ function asyncSetAuthUser({ email, password }) {
 
       dispatch(setAuthUserActionCreator(authUser));
     } catch (error) {
-      alert(error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
     }
   };
 }
@@ -45,7 +50,11 @@ function asyncRegisterUser({ name, email, password }) {
       saveAccessToken(token);
       dispatch(setAuthUserActionCreator(user));
     } catch (error) {
-      alert(error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
     }
   };
 }

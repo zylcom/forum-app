@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import {
   createComment,
   downVoteComment,
@@ -80,12 +81,20 @@ function asyncReceiveThreadDetail(threadId) {
 
       dispatch(receiveThreadDetailActionCreator(threadDetail));
     } catch (error) {
-      alert(error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        allowEnterKey: false,
+        confirmButtonText: "<a href='/'>Back to home</a>",
+      });
     }
   };
 }
 
-function asyncVoteUpThreadDetail() {
+function asyncVoteUpThreadDetail(isThreadVotedDown) {
   return async (dispatch, getState) => {
     const { authUser, threadDetail } = getState();
 
@@ -94,14 +103,34 @@ function asyncVoteUpThreadDetail() {
     try {
       await upVoteThread(threadDetail.id);
     } catch (error) {
-      alert(error.message);
+      if (isThreadVotedDown) {
+        dispatch(voteDownThreadDetailActionCreator(authUser.id));
+      } else {
+        dispatch(neutralizeVoteThreadDetailActionCreator(authUser.id));
+      }
 
-      dispatch(neutralizeVoteThreadDetailActionCreator(authUser.id));
+      if (error.message === "Token maximum age exceeded") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          html: `<b>${error.message}</b> <br /> Please re-login`,
+          confirmButtonText: "<a href='/login'>Sign In</a>",
+          showCancelButton: true,
+        });
+
+        return;
+      }
+
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
     }
   };
 }
 
-function asyncVoteDownThreadDetail() {
+function asyncVoteDownThreadDetail(isThreadVotedUp) {
   return async (dispatch, getState) => {
     const { authUser, threadDetail } = getState();
 
@@ -110,9 +139,28 @@ function asyncVoteDownThreadDetail() {
     try {
       await downVoteThread(threadDetail.id);
     } catch (error) {
-      alert(error.message);
+      if (isThreadVotedUp) {
+        dispatch(voteUpThreadDetailActionCreator(authUser.id));
+      } else {
+        dispatch(neutralizeVoteThreadDetailActionCreator(authUser.id));
+      }
 
-      dispatch(neutralizeVoteThreadDetailActionCreator(authUser.id));
+      if (error.message === "Token maximum age exceeded") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          html: `<b>${error.message}</b> <br /> Please re-login`,
+          confirmButtonText: "<a href='/login'>Sign In</a>",
+          showCancelButton: true,
+        });
+        return;
+      }
+
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
     }
   };
 }
@@ -124,12 +172,16 @@ function asyncAddComment({ threadId, content }) {
 
       dispatch(addCommentActionCreator(comment));
     } catch (error) {
-      alert(error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
     }
   };
 }
 
-function asyncVoteUpComment({ threadId, commentId }) {
+function asyncVoteUpComment({ threadId, commentId, isCommentVotedDown }) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
 
@@ -138,16 +190,41 @@ function asyncVoteUpComment({ threadId, commentId }) {
     try {
       await upVoteComment({ threadId, commentId });
     } catch (error) {
-      alert(error.message);
+      if (isCommentVotedDown) {
+        dispatch(
+          voteDownCommentActionCreator({ commentId, userId: authUser.id }),
+        );
+      } else {
+        dispatch(
+          neutralizeVoteCommentActionCreator({
+            commentId,
+            userId: authUser.id,
+          }),
+        );
+      }
 
-      dispatch(
-        neutralizeVoteCommentActionCreator({ commentId, userId: authUser.id }),
-      );
+      if (error.message === "Token maximum age exceeded") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          html: `<b>${error.message}</b> <br /> Please re-login`,
+          confirmButtonText: "<a href='/login'>Sign In</a>",
+          showCancelButton: true,
+        });
+
+        return;
+      }
+
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
     }
   };
 }
 
-function asyncVoteDownComment({ threadId, commentId }) {
+function asyncVoteDownComment({ threadId, commentId, isCommentVotedUp }) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
 
@@ -156,16 +233,45 @@ function asyncVoteDownComment({ threadId, commentId }) {
     try {
       await downVoteComment({ threadId, commentId });
     } catch (error) {
-      alert(error.message);
+      if (isCommentVotedUp) {
+        dispatch(
+          voteUpCommentActionCreator({ commentId, userId: authUser.id }),
+        );
+      } else {
+        dispatch(
+          neutralizeVoteCommentActionCreator({
+            commentId,
+            userId: authUser.id,
+          }),
+        );
+      }
 
-      dispatch(
-        neutralizeVoteCommentActionCreator({ commentId, userId: authUser.id }),
-      );
+      if (error.message === "Token maximum age exceeded") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          html: `<b>${error.message}</b> <br /> Please re-login`,
+          confirmButtonText: "<a href='/login'>Sign In</a>",
+          showCancelButton: true,
+        });
+
+        return;
+      }
+
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
     }
   };
 }
 
-function asyncNeutralizeCommentVote({ threadId, commentId }) {
+function asyncNeutralizeCommentVote({
+  threadId,
+  commentId,
+  isCommentVotedUp = false,
+}) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
 
@@ -176,7 +282,33 @@ function asyncNeutralizeCommentVote({ threadId, commentId }) {
     try {
       await neutralizeVoteComment({ threadId, commentId });
     } catch (error) {
-      alert(error.message);
+      if (isCommentVotedUp) {
+        dispatch(
+          voteUpCommentActionCreator({ commentId, userId: authUser.id }),
+        );
+      } else {
+        dispatch(
+          voteDownCommentActionCreator({ commentId, userId: authUser.id }),
+        );
+      }
+
+      if (error.message === "Token maximum age exceeded") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          html: `<b>${error.message}</b> <br /> Please re-login`,
+          confirmButtonText: "<a href='/login'>Sign In</a>",
+          showCancelButton: true,
+        });
+
+        return;
+      }
+
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
     }
   };
 }

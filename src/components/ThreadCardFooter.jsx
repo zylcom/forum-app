@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
 import CommentButton from "./CommentButton";
 import VoteDownButton from "./VoteDownButton";
 import VoteUpButton from "./VoteUpButton";
@@ -18,26 +19,36 @@ function ThreadCardFooter({ threadId, upVotesBy, downVotesBy, totalComments }) {
 
   function onVoteUpThread() {
     if (authUser === null) {
-      return alert("You must sign in to vote a thread!");
+      return Swal.fire({
+        icon: "info",
+        title: "You must sign in to vote a thread.",
+        confirmButtonText: "<a href='/login'>Sign In</a>",
+        showCancelButton: true,
+      });
     }
 
     if (isThreadVotedUp) {
-      return dispatch(asyncNeutralizeThreadVote(threadId));
+      return dispatch(asyncNeutralizeThreadVote({ threadId, isThreadVotedUp }));
     }
 
-    dispatch(asyncVoteUpThread(threadId));
+    dispatch(asyncVoteUpThread({ threadId, isVotedDown: isThreadVotedDown }));
   }
 
   function onVoteDownThread() {
     if (authUser === null) {
-      return alert("You must sign in to vote a thread!");
+      return Swal.fire({
+        icon: "info",
+        title: "You must sign in to vote a thread.",
+        confirmButtonText: "<a href='/login'>Sign In</a>",
+        showCancelButton: true,
+      });
     }
 
     if (isThreadVotedDown) {
-      return dispatch(asyncNeutralizeThreadVote(threadId));
+      return dispatch(asyncNeutralizeThreadVote({ threadId }));
     }
 
-    dispatch(asyncVoteDownThread(threadId));
+    dispatch(asyncVoteDownThread({ threadId, isVotedUp: isThreadVotedUp }));
   }
 
   return (

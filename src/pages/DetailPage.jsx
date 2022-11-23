@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import parse from "html-react-parser";
+import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Avatar from "../components/Avatar";
@@ -27,26 +28,36 @@ function DetailPage() {
 
   function onVoteUpThreadDetail() {
     if (authUser === null) {
-      return alert("You must sign in to vote a thread!");
+      return Swal.fire({
+        icon: "info",
+        title: "You must sign in to vote a thread.",
+        confirmButtonText: "<a href='/login'>Sign In</a>",
+        showCancelButton: true,
+      });
     }
 
     if (isThreadVotedUp) {
-      return dispatch(asyncNeutralizeThreadVote(id));
+      return dispatch(asyncNeutralizeThreadVote(id, isThreadVotedUp));
     }
 
-    dispatch(asyncVoteUpThreadDetail());
+    dispatch(asyncVoteUpThreadDetail(isThreadVotedDown));
   }
 
   function onVoteDownThreadDetail() {
     if (authUser === null) {
-      return alert("You must sign in to vote a thread!");
+      return Swal.fire({
+        icon: "info",
+        title: "You must sign in to vote a thread.",
+        confirmButtonText: "<a href='/login'>Sign In</a>",
+        showCancelButton: true,
+      });
     }
 
     if (isThreadVotedDown) {
       return dispatch(asyncNeutralizeThreadVote(id));
     }
 
-    dispatch(asyncVoteDownThreadDetail());
+    dispatch(asyncVoteDownThreadDetail(isThreadVotedUp));
   }
 
   if (threadDetail === null) {

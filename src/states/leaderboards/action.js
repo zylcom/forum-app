@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { getLeaderboards } from "../../utils";
 
 const ActionType = {
@@ -15,7 +16,11 @@ function asyncReceiveLeaderboards() {
 
       dispatch(receiveLeaderboardsActionCreator(leaderboards));
     } catch (error) {
-      alert(error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
     }
   };
 }
