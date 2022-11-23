@@ -73,15 +73,13 @@ function asyncNeutralizeThreadVote({ threadId, isThreadVotedUp = false }) {
           confirmButtonText: "<a href='/login'>Sign In</a>",
           showCancelButton: true,
         });
-
-        return;
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.message,
+        });
       }
-
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.message,
-      });
     }
   };
 }

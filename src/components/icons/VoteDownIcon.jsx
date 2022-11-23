@@ -9,7 +9,7 @@ function VoteDownIcon({ fillColor }) {
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className="w-6 h-6"
+      className="w-6 h-6 transition-all duration-300 hover:scale-125"
     >
       <path
         strokeLinecap="round"

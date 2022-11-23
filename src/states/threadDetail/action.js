@@ -83,15 +83,18 @@ function asyncReceiveThreadDetail(threadId) {
 
       dispatch(receiveThreadDetailActionCreator(threadDetail));
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.message,
-        allowEscapeKey: false,
-        allowOutsideClick: false,
-        allowEnterKey: false,
-        confirmButtonText: "<a href='/'>Back to home</a>",
-      });
+      if (error.message === "thread tidak ditemukan") {
+        Swal.fire({
+          title: "Thread not found",
+          icon: "error",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.message,
+        });
+      }
     }
 
     dispatch(hideLoading());
@@ -121,15 +124,13 @@ function asyncVoteUpThreadDetail(isThreadVotedDown) {
           confirmButtonText: "<a href='/login'>Sign In</a>",
           showCancelButton: true,
         });
-
-        return;
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.message,
+        });
       }
-
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.message,
-      });
     }
   };
 }
@@ -157,14 +158,13 @@ function asyncVoteDownThreadDetail(isThreadVotedUp) {
           confirmButtonText: "<a href='/login'>Sign In</a>",
           showCancelButton: true,
         });
-        return;
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.message,
+        });
       }
-
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.message,
-      });
     }
   };
 }
@@ -184,15 +184,13 @@ function asyncAddComment({ threadId, content }) {
           confirmButtonText: "<a href='/login'>Sign In</a>",
           showCancelButton: true,
         });
-
-        return;
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.message,
+        });
       }
-
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.message,
-      });
     }
   };
 }
@@ -227,15 +225,13 @@ function asyncVoteUpComment({ threadId, commentId, isCommentVotedDown }) {
           confirmButtonText: "<a href='/login'>Sign In</a>",
           showCancelButton: true,
         });
-
-        return;
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.message,
+        });
       }
-
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.message,
-      });
     }
   };
 }
@@ -270,15 +266,13 @@ function asyncVoteDownComment({ threadId, commentId, isCommentVotedUp }) {
           confirmButtonText: "<a href='/login'>Sign In</a>",
           showCancelButton: true,
         });
-
-        return;
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.message,
+        });
       }
-
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.message,
-      });
     }
   };
 }
@@ -316,15 +310,13 @@ function asyncNeutralizeCommentVote({
           confirmButtonText: "<a href='/login'>Sign In</a>",
           showCancelButton: true,
         });
-
-        return;
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.message,
+        });
       }
-
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.message,
-      });
     }
   };
 }

@@ -35,17 +35,15 @@ function HomePage() {
   }));
 
   return (
-    <>
-      <div className="pt-16 pb-20">
-        <CategoryList
-          currentCategory={category}
-          categories={categoryList}
-          categoryChangeHandler={changeCategory}
-        />
+    <div className="py-14">
+      <CategoryList
+        currentCategory={category}
+        categories={categoryList}
+        categoryChangeHandler={changeCategory}
+      />
 
-        <ThreadList threads={threadList} />
-      </div>
-    </>
+      <ThreadList threads={threadList} />
+    </div>
   );
 }
 

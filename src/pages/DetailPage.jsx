@@ -1,14 +1,11 @@
 import React, { useEffect } from "react";
-import parse from "html-react-parser";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Avatar from "../components/Avatar";
 import CommentList from "../components/CommentList";
-import VoteDownButton from "../components/VoteDownButton";
-import VoteUpButton from "../components/VoteUpButton";
+import PageNotFound from "./PageNotFound";
+import ThreadDetail from "../components/ThreadDetail";
 import { asyncNeutralizeThreadVote } from "../states/shared/action";
-import { postedAt } from "../utils";
 import {
   asyncReceiveThreadDetail,
   asyncVoteDownThreadDetail,
@@ -37,7 +34,9 @@ function DetailPage() {
     }
 
     if (isThreadVotedUp) {
-      return dispatch(asyncNeutralizeThreadVote(id, isThreadVotedUp));
+      return dispatch(
+        asyncNeutralizeThreadVote({ threadId: id, isThreadVotedUp }),
+      );
     }
 
     dispatch(asyncVoteUpThreadDetail(isThreadVotedDown));
@@ -54,14 +53,14 @@ function DetailPage() {
     }
 
     if (isThreadVotedDown) {
-      return dispatch(asyncNeutralizeThreadVote(id));
+      return dispatch(asyncNeutralizeThreadVote({ threadId: id }));
     }
 
     dispatch(asyncVoteDownThreadDetail(isThreadVotedUp));
   }
 
   if (threadDetail === null) {
-    return <div>Not Found</div>;
+    return <PageNotFound />;
   }
 
   return (
@@ -69,45 +68,13 @@ function DetailPage() {
       className="text-white flex md:max-h-screen md:min-h-screen flex-col gap-y-10
       md:flex-row "
     >
-      <div className="w-full overflow-auto bg-navy-blazer py-16 md:py-0 md:my-14 px-3">
-        <div className=" flex justify-between items-center">
-          <div className="flex items-center gap-x-2">
-            <Avatar url={threadDetail.owner.avatar} />
-
-            <div className="text-sm text-center font-light break-all">
-              {threadDetail.owner.name}
-
-              <span className="text-[length:10px] font-light">
-                {" "}
-                &bull; {postedAt(threadDetail.createdAt)}
-              </span>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-start">
-            <VoteUpButton
-              voteUp={onVoteUpThreadDetail}
-              totalVotesUp={threadDetail.upVotesBy.length}
-              isVoted={isThreadVotedUp}
-            />
-            <VoteDownButton
-              voteDown={onVoteDownThreadDetail}
-              totalVotesDown={threadDetail.downVotesBy.length}
-              isVoted={isThreadVotedDown}
-            />
-          </div>
-        </div>
-
-        <span className="bg-deepest-water/50 rounded p-1 text-xs">
-          #{threadDetail.category}
-        </span>
-
-        <h1 className="text-3xl font-bold my-7">{threadDetail.title}</h1>
-
-        <div className="font-montserrat font-medium">
-          {parse(threadDetail.body)}
-        </div>
-      </div>
+      <ThreadDetail
+        thread={threadDetail}
+        onVoteUpThreadDetail={onVoteUpThreadDetail}
+        isThreadVotedUp={isThreadVotedUp}
+        onVoteDownThreadDetail={onVoteDownThreadDetail}
+        isThreadVotedDown={isThreadVotedDown}
+      />
 
       <aside
         className="md:border-l pb-16 md:pb-0 md:my-14 overflow-auto md:min-w-[300px] md:max-w-[350px] lg:max-w-[500px]

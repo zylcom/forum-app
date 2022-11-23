@@ -47,15 +47,13 @@ function asyncAddThread({ title, body, category = "general" }) {
           confirmButtonText: "<a href='/login'>Sign In</a>",
           showCancelButton: true,
         });
-
-        return;
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.message,
+        });
       }
-
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.message,
-      });
     }
   };
 }
@@ -87,15 +85,13 @@ function asyncVoteUpThread({ threadId, isVotedDown }) {
           confirmButtonText: "<a href='/login'>Sign In</a>",
           showCancelButton: true,
         });
-
-        return;
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.message,
+        });
       }
-
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.message,
-      });
     }
   };
 }
@@ -125,15 +121,13 @@ function asyncVoteDownThread({ threadId, isVotedUp }) {
           confirmButtonText: "<a href='/login'>Sign In</a>",
           showCancelButton: true,
         });
-
-        return;
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.message,
+        });
       }
-
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.message,
-      });
     }
   };
 }

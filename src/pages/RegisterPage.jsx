@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import HeroImage from "../assets/undraw_authentication.svg";
+import heroImage from "../assets/undraw_authentication.svg";
 import RegisterInput from "../components/RegisterInput";
 
 function RegisterPage() {
@@ -10,9 +10,9 @@ function RegisterPage() {
       place-items-center gap-x-3 mb-10 p-5 min-h-screen"
     >
       <div className="flex flex-col justify-center">
-        <h1 className="text-4xl mb-5 font-bold mix-blend-difference">
+        <h2 className="text-4xl mb-5 font-bold mix-blend-difference">
           Create A New Account.
-        </h1>
+        </h2>
 
         <p className="text-sm mb-8 text-downpour">
           Already A Member?{" "}
@@ -25,7 +25,7 @@ function RegisterPage() {
       </div>
 
       <img
-        src={HeroImage}
+        src={heroImage}
         alt=""
         className="hidden sm:block h-3/5 max-h-1/2 mx-auto"
       />
