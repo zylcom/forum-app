@@ -1,31 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CategoryList from "../components/CategoryList";
 import ThreadList from "../components/ThreadList";
-import { asyncReceiveCategories } from "../states/categories/action";
 import { asyncPopulateUsersAndThreads } from "../states/shared/action";
+import { setCategoryActionCreator } from "../states/category/action";
+import { extractAllCategoryFromThreads } from "../utils";
 
 function HomePage() {
-  const [category, setCategory] = useState("");
   const {
     threads = [],
     users = [],
-    categories = [],
+    category = "",
     authUser,
   } = useSelector((states) => states);
   const dispatch = useDispatch();
+  const categoryList = extractAllCategoryFromThreads(threads);
 
   function changeCategory(newCategory) {
-    setCategory((prevState) => (prevState === newCategory ? "" : newCategory));
+    dispatch(setCategoryActionCreator(newCategory));
   }
 
   useEffect(() => {
     dispatch(asyncPopulateUsersAndThreads());
   }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(asyncReceiveCategories(threads));
-  }, [threads]);
 
   const filteredThreadList = threads.filter(
     (thread) => thread.category === category || category === "",
@@ -42,7 +39,7 @@ function HomePage() {
       <div className="pt-16 pb-20">
         <CategoryList
           currentCategory={category}
-          categories={categories}
+          categories={categoryList}
           categoryChangeHandler={changeCategory}
         />
 

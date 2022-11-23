@@ -323,6 +323,7 @@ export {
   addCommentActionCreator,
   voteUpCommentActionCreator,
   voteDownCommentActionCreator,
+  neutralizeVoteCommentActionCreator,
   asyncReceiveThreadDetail,
   asyncVoteUpThreadDetail,
   asyncVoteDownThreadDetail,

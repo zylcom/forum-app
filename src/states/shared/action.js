@@ -1,4 +1,6 @@
+import Swal from "sweetalert2";
 import { getAllThreads, getAllUsers, neutralizeVoteThread } from "../../utils";
+import { receiveUsersActionCreator } from "../users/action";
 import {
   neutralizeVoteThreadActionCreator,
   receiveThreadsActionCreator,
@@ -10,8 +12,6 @@ import {
   voteDownThreadDetailActionCreator,
   voteUpThreadDetailActionCreator,
 } from "../threadDetail/action";
-import { receiveUsersActionCreator } from "../users/action";
-import Swal from "sweetalert2";
 
 function asyncPopulateUsersAndThreads() {
   return async (dispatch) => {
