@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { getLeaderboards } from "../../utils";
 
 const ActionType = {
@@ -11,6 +12,8 @@ function receiveLeaderboardsActionCreator(leaderboards) {
 
 function asyncReceiveLeaderboards() {
   return async (dispatch) => {
+    dispatch(showLoading());
+
     try {
       const leaderboards = await getLeaderboards();
 
@@ -22,6 +25,8 @@ function asyncReceiveLeaderboards() {
         text: error.message,
       });
     }
+
+    dispatch(hideLoading());
   };
 }
 

@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { getAllThreads, getAllUsers, neutralizeVoteThread } from "../../utils";
 import { receiveUsersActionCreator } from "../users/action";
 import {
@@ -15,6 +16,8 @@ import {
 
 function asyncPopulateUsersAndThreads() {
   return async (dispatch) => {
+    dispatch(showLoading());
+
     try {
       const users = await getAllUsers();
       const threads = await getAllThreads();
@@ -28,6 +31,8 @@ function asyncPopulateUsersAndThreads() {
         text: error.message,
       });
     }
+
+    dispatch(hideLoading());
   };
 }
 

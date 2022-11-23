@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import { showLoading, hideLoading } from "react-redux-loading-bar";
 import {
   createComment,
   downVoteComment,
@@ -74,6 +75,7 @@ function neutralizeVoteCommentActionCreator({ commentId, userId }) {
 
 function asyncReceiveThreadDetail(threadId) {
   return async (dispatch) => {
+    dispatch(showLoading());
     dispatch(clearThreadDetailActionCreator());
 
     try {
@@ -91,6 +93,8 @@ function asyncReceiveThreadDetail(threadId) {
         confirmButtonText: "<a href='/'>Back to home</a>",
       });
     }
+
+    dispatch(hideLoading());
   };
 }
 
@@ -172,6 +176,18 @@ function asyncAddComment({ threadId, content }) {
 
       dispatch(addCommentActionCreator(comment));
     } catch (error) {
+      if (error.message === "Token maximum age exceeded") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          html: `<b>${error.message}</b> <br /> Please re-login`,
+          confirmButtonText: "<a href='/login'>Sign In</a>",
+          showCancelButton: true,
+        });
+
+        return;
+      }
+
       Swal.fire({
         icon: "error",
         title: "Oops...",

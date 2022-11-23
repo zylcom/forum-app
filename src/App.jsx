@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
+import LoadingBar from "react-redux-loading-bar";
 import NavBar from "./components/NavBar";
 import NavigationTab from "./components/NavigationTab";
 import CreateThreadPage from "./pages/CreateThreadPage";
@@ -27,6 +28,10 @@ function App() {
   return (
     <div className="bg-black-wash min-h-screen font-inter">
       <header>
+        <div className="fixed z-[100] top-0 left-0 w-full">
+          <LoadingBar />
+        </div>
+
         <NavBar />
       </header>
 

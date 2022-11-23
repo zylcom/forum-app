@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { getMyProfile, login, register, saveAccessToken } from "../../utils";
 
 const ActionType = {
@@ -16,6 +17,8 @@ function unsetAuthUserActionCreator() {
 
 function asyncSetAuthUser({ email, password }) {
   return async (dispatch) => {
+    dispatch(showLoading());
+
     try {
       const token = await login({ email, password });
 
@@ -31,6 +34,8 @@ function asyncSetAuthUser({ email, password }) {
         text: error.message,
       });
     }
+
+    dispatch(hideLoading());
   };
 }
 
@@ -43,6 +48,8 @@ function asyncUnsetAuthUser() {
 
 function asyncRegisterUser({ name, email, password }) {
   return async (dispatch) => {
+    dispatch(showLoading());
+
     try {
       const user = await register({ name, email, password });
       const token = await login({ email, password });
@@ -56,6 +63,8 @@ function asyncRegisterUser({ name, email, password }) {
         text: error.message,
       });
     }
+
+    dispatch(hideLoading());
   };
 }
 
