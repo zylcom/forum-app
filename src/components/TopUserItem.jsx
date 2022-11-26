@@ -12,7 +12,7 @@ function TopUserItem({ index, avatar, name, score }) {
       <Avatar url={avatar} alt={name} />
 
       <span className="text-xl mx-2 truncate" title={name}>
-        {name === authUser?.name ? `${name} (Anda)` : name}
+        {name === authUser?.name ? `${name} (You)` : name}
       </span>
 
       <div
