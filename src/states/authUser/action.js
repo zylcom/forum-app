@@ -51,11 +51,9 @@ function asyncRegisterUser({ name, email, password }) {
     dispatch(showLoading());
 
     try {
-      const user = await register({ name, email, password });
-      const token = await login({ email, password });
+      await register({ name, email, password });
 
-      saveAccessToken(token);
-      dispatch(setAuthUserActionCreator(user));
+      dispatch(asyncSetAuthUser({ email, password }));
     } catch (error) {
       Swal.fire({
         icon: "error",
