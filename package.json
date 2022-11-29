@@ -11,8 +11,8 @@
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "test": "vitest",
     "e2e": "cypress run",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.0",
@@ -27,14 +27,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
-    "@mdx-js/react": "^1.6.22",
-    "@storybook/addon-actions": "^6.5.13",
-    "@storybook/addon-essentials": "^6.5.13",
-    "@storybook/addon-interactions": "^6.5.13",
-    "@storybook/addon-links": "^6.5.13",
-    "@storybook/builder-vite": "^0.2.5",
-    "@storybook/react": "^6.5.13",
-    "@storybook/testing-library": "^0.0.13",
+    "@storybook/addon-actions": "^7.0.0-alpha.54",
+    "@storybook/addon-essentials": "^7.0.0-alpha.54",
+    "@storybook/addon-interactions": "^7.0.0-alpha.54",
+    "@storybook/addon-links": "^7.0.0-alpha.54",
+    "@storybook/react": "^7.0.0-alpha.54",
+    "@storybook/react-vite": "^7.0.0-alpha.54",
+    "@storybook/testing-library": "^0.0.14-next.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
@@ -50,6 +49,7 @@
     "eslint-plugin-react": "^7.31.10",
     "jsdom": "^20.0.3",
     "postcss": "^8.4.19",
+    "storybook": "^7.0.0-alpha.54",
     "tailwindcss": "^3.2.4",
     "vite": "^3.2.3",
     "vitest": "^0.25.3"
