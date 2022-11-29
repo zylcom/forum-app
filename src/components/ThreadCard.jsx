@@ -18,7 +18,7 @@ function ThreadCard({
   user,
 }) {
   return (
-    <div className="grid grid-cols-3 px-3 py-8 text-super-silver gap-y-5 border-b border-b-vampire-bite">
+    <div className="grid grid-cols-3 px-3 py-8 text-super-silver gap-y-5 border-b bg-navy-blazer border-b-vampire-bite">
       <div
         className="col-span-1 flex flex-col items-center bg-red-0 px-3 relative order-2
         border-t pt-1 after:content[''] after:w-2 after:h-2 after:absolute after:bg-navy-blazer
@@ -52,7 +52,7 @@ function ThreadCard({
         <div
           className="text-sm mt-3 overflow-hidden leading-5 min-h-[32px] max-h-[calc(3*16px*1.25)] relative
           before:content-[''] before:absolute before:h-[calc(16px*1.25)] before:w-full before:bottom-0
-          before:pointer-events-none before:bg-gradient-to-t before:from-space-explorer"
+          before:pointer-events-none before:bg-gradient-to-t before:from-space-explorer break-all"
         >
           {parse(body)}
         </div>

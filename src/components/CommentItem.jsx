@@ -92,9 +92,7 @@ function CommentItem({
         <Avatar url={owner.avatar} />
 
         <div className="w-full overflow-hidden">
-          <span className="text-sm break-all">
-            {owner.name} &bull;{" "}
-          </span>
+          <span className="text-sm break-all">{owner.name} &bull; </span>
 
           <span className="text-[length:10px] font-light">
             {postedAt(createdAt)}
@@ -116,7 +114,7 @@ function CommentItem({
         <input
           type="checkbox"
           className="expand-btn mt-2 rounded appearance-none border px-2 cursor-pointer hover:bg-navy-blazer
-        before:content-['Expand'] checked:before:content-['Collapse']"
+          before:content-['Expand'] checked:before:content-['Collapse']"
         />
       )}
 
@@ -138,7 +136,7 @@ function CommentItem({
   );
 }
 
-CommentItem.propTypes = {
+export const commentItemPropTypes = {
   id: PropTypes.string.isRequired,
   owner: PropTypes.object.isRequired,
   content: PropTypes.string.isRequired,
@@ -147,5 +145,7 @@ CommentItem.propTypes = {
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   authUser: PropTypes.object,
 };
+
+CommentItem.propTypes = commentItemPropTypes;
 
 export default CommentItem;

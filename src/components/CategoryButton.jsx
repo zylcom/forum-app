@@ -8,7 +8,7 @@ function CategoryButton({
 }) {
   return (
     <button
-      className={`border border-captain-blue rounded p-1 text-xs whitespace-nowrap ${
+      className={`border border-captain-blue rounded p-1 text-white text-xs whitespace-nowrap ${
         categoryName === currentCategory ? "bg-scuff-blue" : ""
       }`}
       onClick={() => {

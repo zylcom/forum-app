@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CommentInput from "./CommentInput";
 import CommentItem from "./CommentItem";
+import { commentItemPropTypes } from "./CommentItem";
 
 function CommentList({ comments, threadId }) {
   const { authUser } = useSelector((states) => states);
@@ -39,7 +40,7 @@ function CommentList({ comments, threadId }) {
 }
 
 CommentList.propTypes = {
-  comments: PropTypes.arrayOf(PropTypes.object).isRequired,
+  comments: PropTypes.arrayOf(PropTypes.shape(commentItemPropTypes)).isRequired,
   threadId: PropTypes.string.isRequired,
 };
 
