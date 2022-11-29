@@ -2,7 +2,8 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "node": true
+    "node": true,
+    "cypress/globals": true
   },
   "extends": ["plugin:react/recommended", "google"],
   "overrides": [],
@@ -11,7 +12,7 @@
     "sourceType": "module",
     "ecmaFeatures": { "jsx": true }
   },
-  "plugins": ["react"],
+  "plugins": ["react", "cypress"],
   "rules": {
     "quotes": ["error", "double"],
     "quote-props": ["error", "as-needed"],

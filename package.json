@@ -9,7 +9,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "test": "vitest"
+    "test": "vitest",
+    "e2e": "cypress run"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.0",
@@ -30,8 +31,10 @@
     "@types/react-dom": "^18.0.8",
     "@vitejs/plugin-react": "^2.2.0",
     "autoprefixer": "^10.4.13",
+    "cypress": "^11.2.0",
     "eslint": "^8.27.0",
     "eslint-config-google": "^0.14.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-react": "^7.31.10",
     "jsdom": "^20.0.3",
     "postcss": "^8.4.19",
