@@ -8,7 +8,7 @@ function VoteUpButton({ voteUp, totalVotesUp, isVoted }) {
       className="grow flex justify-center gap-x-2 items-center"
       onClick={voteUp}
     >
-      <VoteUpIcon fillColor="none" />
+      <VoteUpIcon fillColor={isVoted ? "#1d90f4" : "none"} />
 
       <span className="text-sm">{totalVotesUp}</span>
     </button>
