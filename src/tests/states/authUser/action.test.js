@@ -7,7 +7,6 @@
  */
 
 import Swal from "sweetalert2";
-import { afterEach, beforeEach } from "vitest";
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 import * as api from "../../../utils";
 import {

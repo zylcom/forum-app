@@ -31,10 +31,10 @@ describe("VoteUpButton component", () => {
     );
 
     // action
-    const voteUpButton = screen.getByRole("button");
+    const voteUpButtonElement = screen.getByRole("button");
 
     // assert
-    expect(voteUpButton).toHaveTextContent(totalVotesUp);
+    expect(voteUpButtonElement).toHaveTextContent(totalVotesUp);
   });
 
   it("should have no color when not voted", () => {
@@ -50,8 +50,8 @@ describe("VoteUpButton component", () => {
     );
 
     // action
-    const voteUpButton = screen.getByRole("button");
-    const svgElement = voteUpButton.firstChild;
+    const voteUpButtonElement = screen.getByRole("button");
+    const svgElement = voteUpButtonElement.firstChild;
 
     // assert
     expect(svgElement).toHaveAttribute("fill", "none");
@@ -70,11 +70,11 @@ describe("VoteUpButton component", () => {
         totalVotesUp={totalVotesUp}
       />,
     );
-    const voteUpButton = screen.getByRole("button");
-    const svgElement = voteUpButton.firstChild;
+    const voteUpButtonElement = screen.getByRole("button");
+    const svgElement = voteUpButtonElement.firstChild;
 
     // action
-    await userEvent.click(voteUpButton);
+    await userEvent.click(voteUpButtonElement);
 
     rerender(
       <VoteUpButton
@@ -101,10 +101,10 @@ describe("VoteUpButton component", () => {
       />,
     );
 
-    const voteUpButton = screen.getByRole("button");
+    const voteUpButtonElement = screen.getByRole("button");
 
     // action
-    await userEvent.click(voteUpButton);
+    await userEvent.click(voteUpButtonElement);
 
     // assert
     expect(voteUpHandler).toBeCalledTimes(1);
