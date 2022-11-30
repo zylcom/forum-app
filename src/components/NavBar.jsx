@@ -38,7 +38,7 @@ function NavBar() {
       ref={navWrapper}
     >
       <Link to="/" className="text-3xl font-berkshire-wash">
-        Forum
+        Forum App
       </Link>
 
       {authUser === null ? (
