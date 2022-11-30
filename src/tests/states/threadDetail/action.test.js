@@ -10,14 +10,13 @@
  */
 
 import Swal from "sweetalert2";
-import { afterEach, beforeEach } from "vitest";
+import * as api from "../../../utils";
 import {
   asyncVoteUpThreadDetail,
   neutralizeVoteThreadDetailActionCreator,
   voteDownThreadDetailActionCreator,
   voteUpThreadDetailActionCreator,
 } from "../../../states/threadDetail/action";
-import * as api from "../../../utils";
 
 // fake data
 const threadDetail = {
@@ -50,21 +49,18 @@ const threadDetail = {
     },
   ],
 };
-
 const authUser = {
   id: "users-1",
   name: "John Doe",
   email: "john@example.com",
   avatar: "https://generated-image-url.jpg",
 };
-
 const fakeUpVoteThreadResponse = {
   id: "vote-1",
   userId: "users-1",
   threadId: "thread-1",
   voteType: 1,
 };
-
 const fakeErrorResponse = {
   normalError: new Error("Failed to vote up thread"),
   tokenExpiredError: new Error("Token maximum age exceeded"),
