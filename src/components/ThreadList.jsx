@@ -4,13 +4,11 @@ import ThreadCard from "./ThreadCard";
 
 function ThreadList({ threads }) {
   return (
-    <div className="mt-10 md:w-3/5 max-w-[1000px] mx-auto bg-navy-blazer">
+    <div className="flex flex-col gap-y-3 p-3 mt-10 max-w-[720px] sm:min-w-[500px] md:min-w-[720px] lg:mt-0">
       {threads.length > 0 ? (
         threads.map((thread) => <ThreadCard key={thread.id} {...thread} />)
       ) : (
-        <h2 className="text-center text-3xl py-10 text-vampire-bite">
-          No Threads
-        </h2>
+        <h2 className="text-center text-3xl py-10 text-vampire-bite">No Threads</h2>
       )}
     </div>
   );

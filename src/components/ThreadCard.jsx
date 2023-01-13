@@ -6,71 +6,40 @@ import Avatar from "./Avatar";
 import ThreadCardFooter from "./ThreadCardFooter";
 import { postedAt } from "../utils";
 
-function ThreadCard({
-  id,
-  title,
-  body,
-  category,
-  createdAt,
-  upVotesBy,
-  downVotesBy,
-  totalComments,
-  user,
-}) {
+function ThreadCard({ id, title, body, category, createdAt, upVotesBy, downVotesBy, totalComments, user }) {
   return (
-    <div className="grid grid-cols-3 px-3 py-8 text-super-silver gap-y-5 border-b bg-navy-blazer border-b-vampire-bite">
-      <div
-        className="col-span-1 flex flex-col items-center bg-red-0 px-3 relative order-2
-        border-t pt-1 after:content[''] after:w-2 after:h-2 after:absolute after:bg-navy-blazer
-        after:-top-[1px] after:-left-[1px] after:rounded-tl-md after:border-l after:border-t
-        before:content[''] before:absolute before:w-[5px] before:h-[5px] before:-top-[1px]
-        before:-left-[1px] before:border-space-explorer before:border-l-2 before:border-t-2"
-      >
-        <div className="flex flex-col items-center">
-          <Avatar url={user.avatar} alt={user.name} />
-
-          <span className="text-xs text-center font-light break-all mt-1">
-            {user.name}
-          </span>
-        </div>
-
-        <span className="text-[length:10px] font-light mt-2">
-          {postedAt(createdAt)}
-        </span>
-      </div>
-
-      <div className="col-span-2 bg-space-explorer p-2 rounded-b-md rounded-tl-md border-r order-1">
-        <Link to={`/threads/${id}`}>
-          <h3
-            className="font-bold text-lg truncate hover:text-white"
-            title={title}
-          >
+    <div className="text-super-silver bg-navy-blazer p-3 rounded flex flex-col gap-y-3 md:px-6 md:py-10">
+      <div>
+        <Link to={`/threads/${id}`} className="hover:underline">
+          <h3 className="font-bold text-lg leading-tight hover:text-white" title={title}>
             {title}
           </h3>
         </Link>
 
-        <div
-          className="text-sm mt-3 overflow-hidden leading-5 min-h-[32px] max-h-[calc(3*16px*1.25)] relative
-          before:content-[''] before:absolute before:h-[calc(16px*1.25)] before:w-full before:bottom-0
-          before:pointer-events-none before:bg-gradient-to-t before:from-space-explorer break-all"
-        >
-          {parse(body)}
+        <div className="flex items-center gap-x-2 mt-2">
+          <Avatar url={user.avatar} alt={user.name} />
+          <span className="text-xs text-center font-light break-all">{user.name}</span>
+
+          <span className="text-[length:10px] font-light">&bull; {postedAt(createdAt)}</span>
         </div>
       </div>
 
-      <div className="flex gap-1 flex-wrap col-span-3 order-3">
-        <span className="bg-deepest-water/50 rounded p-1 text-xs">
-          #{category}
-        </span>
+      <div>
+        <div
+          className="text-sm overflow-hidden leading-5 min-h-[32px] max-h-[calc(3*16px*1.25)] relative
+          before:content-[''] before:absolute before:h-[calc(16px*1.25)] before:w-full before:bottom-0
+          before:pointer-events-none before:bg-gradient-to-t before:from-navy-blazer break-words"
+        >
+          {parse(body)}
+        </div>
+
+        <div className="flex gap-1 flex-wrap col-span-3 order-3 mt-3">
+          <span className="bg-deepest-water/50 rounded p-1 text-xs break-all">#{category}</span>
+        </div>
       </div>
 
-      <div className="col-span-3 flex w-full order-4 border rounded [&>button:nth-child(2)]:border-x">
-        <ThreadCardFooter
-          upVotesBy={upVotesBy}
-          downVotesBy={downVotesBy}
-          threadId={id}
-          totalComments={totalComments}
-        />
+      <div className="flex w-full gap-x-10">
+        <ThreadCardFooter upVotesBy={upVotesBy} downVotesBy={downVotesBy} threadId={id} totalComments={totalComments} />
       </div>
     </div>
   );

@@ -5,7 +5,8 @@ import VoteDownIcon from "./icons/VoteDownIcon";
 function VoteDownButton({ voteDown, totalVotesDown, isVoted }) {
   return (
     <button
-      className="grow flex justify-center gap-x-2 items-center"
+      className="flex justify-center gap-x-1 items-center"
+      title="Vote down"
       onClick={voteDown}
     >
       <VoteDownIcon fillColor={isVoted ? "#c70039" : "none"} />

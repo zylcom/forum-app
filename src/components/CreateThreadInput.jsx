@@ -16,11 +16,14 @@ function CreateThreadInput() {
     e.preventDefault();
 
     dispatch(asyncAddThread({ title, body: content, category }));
-    navigate("/");
+
+    if (title !== "" && content !== "") {
+      navigate("/");
+    }
   }
 
   return (
-    <form className="px-5 md:w-3/5 max-w-[1000px] mx-auto">
+    <form action="" className="px-5 md:w-3/5 max-w-[1000px] mx-auto">
       <label htmlFor="title" className="block">
         Title
       </label>

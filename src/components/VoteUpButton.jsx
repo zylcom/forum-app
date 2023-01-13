@@ -5,7 +5,8 @@ import VoteUpIcon from "./icons/VoteUpIcon";
 function VoteUpButton({ voteUp, totalVotesUp, isVoted }) {
   return (
     <button
-      className="grow flex justify-center gap-x-2 items-center"
+      className="flex justify-center gap-x-1 items-center"
+      title="Vote up"
       onClick={voteUp}
     >
       <VoteUpIcon fillColor={isVoted ? "#1d90f4" : "none"} />
