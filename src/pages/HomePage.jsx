@@ -7,12 +7,7 @@ import { setCategoryActionCreator } from "../states/category/action";
 import { extractAllCategoryFromThreads } from "../utils";
 
 function HomePage() {
-  const {
-    threads = [],
-    users = [],
-    category = "",
-    authUser,
-  } = useSelector((states) => states);
+  const { threads = [], users = [], category = "", authUser } = useSelector((states) => states);
   const dispatch = useDispatch();
   const categoryList = extractAllCategoryFromThreads(threads);
 
@@ -24,9 +19,7 @@ function HomePage() {
     dispatch(asyncPopulateUsersAndThreads());
   }, [dispatch]);
 
-  const filteredThreadList = threads.filter(
-    (thread) => thread.category === category || category === "",
-  );
+  const filteredThreadList = threads.filter((thread) => thread.category === category || category === "");
 
   const threadList = filteredThreadList.map((thread) => ({
     ...thread,
@@ -35,14 +28,16 @@ function HomePage() {
   }));
 
   return (
-    <div className="py-14">
-      <CategoryList
-        currentCategory={category}
-        categories={categoryList}
-        categoryChangeHandler={changeCategory}
-      />
+    <div className="flex py-14 w-full overflow-hidden lg:max-h-screen lg:min-h-screen xl:justify-center">
+      <aside className="text-white max-h-screen overflow-y-auto overflow-x-hidden pb-10 lg:px-3 lg:border-r">
+        <h4 className="my-2 hidden lg:block">Thread Category ({categoryList.length})</h4>
 
-      <ThreadList threads={threadList} />
+        <CategoryList currentCategory={category} categories={categoryList} categoryChangeHandler={changeCategory} />
+      </aside>
+
+      <div className="w-full overflow-x-hidden mx-auto sm:w-auto lg:px-5 lg:m-0">
+        <ThreadList threads={threadList} />
+      </div>
     </div>
   );
 }

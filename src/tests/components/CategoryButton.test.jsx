@@ -21,13 +21,7 @@ describe("CategoryButton component", () => {
     // arrange
     const categoryChangeHandler = vi.fn();
 
-    render(
-      <CategoryButton
-        categoryName={category}
-        categoryChangeHandler={categoryChangeHandler}
-        currentCategory=""
-      />,
-    );
+    render(<CategoryButton categoryName={category} categoryChangeHandler={categoryChangeHandler} currentCategory="" />);
 
     // action
     const categoryButton = screen.getByRole("button");
@@ -40,13 +34,7 @@ describe("CategoryButton component", () => {
     // arrange
     const categoryChangeHandler = vi.fn();
 
-    render(
-      <CategoryButton
-        categoryName={category}
-        categoryChangeHandler={categoryChangeHandler}
-        currentCategory=""
-      />,
-    );
+    render(<CategoryButton categoryName={category} categoryChangeHandler={categoryChangeHandler} currentCategory="" />);
 
     const categoryButton = screen.getByRole("button");
 
@@ -74,7 +62,7 @@ describe("CategoryButton component", () => {
     const categoryButton = screen.getByRole("button");
 
     // assert
-    expect(categoryButton).toHaveClass("bg-scuff-blue");
+    expect(categoryButton).toHaveClass("bg-fog-of-war");
   });
 
   it("should toggle background color when user clicked", async () => {
@@ -106,7 +94,7 @@ describe("CategoryButton component", () => {
     );
 
     // assert
-    expect(categoryButton).toHaveClass("bg-scuff-blue");
+    expect(categoryButton).toHaveClass("bg-fog-of-war");
 
     await userEvent.click(categoryButton);
 
@@ -118,6 +106,6 @@ describe("CategoryButton component", () => {
       />,
     );
 
-    expect(categoryButton).not.toHaveClass("bg-scuff-blue");
+    expect(categoryButton).not.toHaveClass("bg-fog-of-war");
   });
 });

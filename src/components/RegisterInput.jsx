@@ -29,7 +29,7 @@ function RegisterInput() {
   }, [authUser]);
 
   return (
-    <form>
+    <form action="">
       <label htmlFor="name" className="block relative mb-3">
         <input
           type="text"

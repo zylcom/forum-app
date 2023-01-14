@@ -8,21 +8,9 @@ import Avatar from "./Avatar";
 import VoteDownButton from "./VoteDownButton";
 import VoteUpButton from "./VoteUpButton";
 import { postedAt } from "../utils";
-import {
-  asyncNeutralizeCommentVote,
-  asyncVoteDownComment,
-  asyncVoteUpComment,
-} from "../states/threadDetail/action";
+import { asyncNeutralizeCommentVote, asyncVoteDownComment, asyncVoteUpComment } from "../states/threadDetail/action";
 
-function CommentItem({
-  id,
-  owner,
-  content,
-  createdAt,
-  upVotesBy,
-  downVotesBy,
-  authUser,
-}) {
+function CommentItem({ id, owner, content, createdAt, upVotesBy, downVotesBy, authUser }) {
   const [commentContainerHeight, setCommentContainerHeight] = useState(0);
   const { id: threadId } = useParams();
   const isCommentVotedUp = upVotesBy.includes(authUser?.id);
@@ -50,9 +38,7 @@ function CommentItem({
       );
     }
 
-    dispatch(
-      asyncVoteUpComment({ threadId, commentId: id, isCommentVotedDown }),
-    );
+    dispatch(asyncVoteUpComment({ threadId, commentId: id, isCommentVotedDown }));
   }
 
   function onVoteDownComment() {
@@ -69,9 +55,7 @@ function CommentItem({
       return dispatch(asyncNeutralizeCommentVote({ threadId, commentId: id }));
     }
 
-    dispatch(
-      asyncVoteDownComment({ threadId, commentId: id, isCommentVotedUp }),
-    );
+    dispatch(asyncVoteDownComment({ threadId, commentId: id, isCommentVotedUp }));
   }
 
   function onResizeHandler() {
@@ -79,6 +63,8 @@ function CommentItem({
   }
 
   useEffect(() => {
+    setCommentContainerHeight(commentContainer.current.clientHeight);
+
     window.addEventListener("resize", onResizeHandler);
 
     return () => {
@@ -94,17 +80,15 @@ function CommentItem({
         <div className="w-full overflow-hidden">
           <span className="text-sm break-all">{owner.name} &bull; </span>
 
-          <span className="text-[length:10px] font-light">
-            {postedAt(createdAt)}
-          </span>
+          <span className="text-[length:10px] font-light">{postedAt(createdAt)}</span>
         </div>
       </div>
 
       <div
         className="font-montserrat overflow-hidden leading-5 max-h-[calc(3*16px*1.25)] relative before:content-['']
         before:absolute before:h-[calc(16px*1.25)] before:w-full before:bottom-0 before:pointer-events-none
-        before:bg-gradient-to-t [&:has(+_input:not(:checked))]:before:from-black-wash
-        [&:has(+_input:checked)]:max-h-[none]"
+        before:bg-gradient-to-t [&:has(+_input:not(:checked))]:before:from-navy-blazer
+        [&:has(+_input:checked)]:max-h-[none] text-sm"
         ref={commentContainer}
       >
         {parse(content)}
@@ -118,20 +102,10 @@ function CommentItem({
         />
       )}
 
-      <div className="flex rounded my-2">
-        <VoteUpButton
-          voteUp={onVoteUpComment}
-          totalVotesUp={upVotesBy.length}
-          isVoted={isCommentVotedUp}
-        />
-        <VoteDownButton
-          voteDown={onVoteDownComment}
-          totalVotesDown={downVotesBy.length}
-          isVoted={isCommentVotedDown}
-        />
+      <div className="flex rounded gap-x-5 my-2">
+        <VoteUpButton voteUp={onVoteUpComment} totalVotesUp={upVotesBy.length} isVoted={isCommentVotedUp} />
+        <VoteDownButton voteDown={onVoteDownComment} totalVotesDown={downVotesBy.length} isVoted={isCommentVotedDown} />
       </div>
-
-      <hr />
     </div>
   );
 }

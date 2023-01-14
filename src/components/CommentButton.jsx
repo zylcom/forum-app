@@ -5,10 +5,7 @@ import CommentIcon from "./icons/CommentIcon";
 
 function CommentButton({ threadId, totalComments }) {
   return (
-    <Link
-      to={`/threads/${threadId}`}
-      className="grow flex justify-center gap-x-2 items-center"
-    >
+    <Link to={`/threads/${threadId}`} className="flex justify-center gap-x-1 items-center" title="Comments">
       <CommentIcon />
 
       <span className="text-sm">{totalComments}</span>

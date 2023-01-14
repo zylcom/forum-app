@@ -34,9 +34,7 @@ function DetailPage() {
     }
 
     if (isThreadVotedUp) {
-      return dispatch(
-        asyncNeutralizeThreadVote({ threadId: id, isThreadVotedUp }),
-      );
+      return dispatch(asyncNeutralizeThreadVote({ threadId: id, isThreadVotedUp }));
     }
 
     dispatch(asyncVoteUpThreadDetail(isThreadVotedDown));
@@ -65,7 +63,7 @@ function DetailPage() {
 
   return (
     <div
-      className="text-white flex md:max-h-screen md:min-h-screen flex-col gap-y-10
+      className="text-white flex pt-16 md:pt-0 md:max-h-screen md:min-h-screen flex-col gap-y-5 bg-navy-blazer
       md:flex-row "
     >
       <ThreadDetail
@@ -78,7 +76,7 @@ function DetailPage() {
 
       <aside
         className="md:border-l pb-16 md:pb-0 md:my-14 overflow-auto md:min-w-[300px] md:max-w-[350px] lg:max-w-[500px]
-        xl:max-w-[600px]"
+        xl:max-w-[600px] ml-5 border-l"
       >
         <CommentList comments={threadDetail.comments} threadId={id} />
       </aside>

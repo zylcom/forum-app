@@ -17,7 +17,7 @@ function CommentInput({ threadId }) {
   }
 
   return (
-    <form className="p-5 flex border-b">
+    <form className="p-5 flex">
       <label htmlFor="comment" className="block relative mb-3 w-full">
         <span className="text-base block mb-2">Add a comment</span>
 
